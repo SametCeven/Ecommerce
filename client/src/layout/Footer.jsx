@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 export default function Footer() {
 
     return (
-        <footer>
+        <footer className='px-5'>
             <span className="text-[24px] text-text font-bold"> Bandage </span>
 
             <div className='flex gap-5 mt-5 text-primary'>
