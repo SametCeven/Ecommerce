@@ -21,7 +21,7 @@ export default function EditorsPick() {
 
             <div className="flex flex-col gap-5 w-80">
                 {imagesLg.map((image, index) =>
-                    <div className="relative">
+                    <div className="relative" key={index}>
                         <img className="w-full" src={image.url} alt={image} key={index} />
                         <span className="absolute bottom-5 left-5 border border-lightBg bg-lightBg px-15 py-2 font-bold text-[16px] " key={image.category}> {image.category} </span>
                     </div>
@@ -30,9 +30,9 @@ export default function EditorsPick() {
 
             <div className="flex flex-col gap-5 w-80">
                 {imagesSl.map((image, index) =>
-                    <div className="relative">
+                    <div className="relative" key={index}>
                         <img className="w-full" src={image.url} alt={image} key={index} />
-                        <span className="absolute bottom-5 left-5 border border-lightBg bg-lightBg px-15 py-2 font-bold text-[16px] " key={image.category}> {image.category} </span>
+                        <span className="absolute bottom-5 left-5 border border-lightBg bg-lightBg text-center px-5 py-2 font-bold text-[16px] " key={image.category}> {image.category} </span>
                     </div>
                 )}
             </div>
