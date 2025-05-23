@@ -1,12 +1,13 @@
 import Carousel from "../components/Carousel";
+import EditorsPick from "../components/EditorsPick";
 
 export default function HomePage(){
 
     
 
     return(
-        <div>
-            <p> home page </p>
+        <div className="py-20">
+            <EditorsPick></EditorsPick>
         </div>
     )
 }
