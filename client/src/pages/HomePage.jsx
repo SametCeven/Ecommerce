@@ -1,5 +1,6 @@
 import BestsellerProducts from "../components/BestsellerProducts";
 import Carousel from "../components/Carousel";
+import Container from "../components/Container";
 import EditorsPick from "../components/EditorsPick";
 
 const imagesCarousel1 = [
@@ -26,6 +27,7 @@ export default function HomePage(){
             <EditorsPick></EditorsPick>
             <BestsellerProducts></BestsellerProducts>
             <Carousel images={imagesCarousel2} button={buttonCarousel2} buttonAlignment={buttonAlignmentCarousel2}></Carousel>
+            <Container></Container>
         </div>
     )
 }
