@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 
-const images = [
-    "https://images.placeholders.dev/400x750",
-    "https://images.placeholders.dev/400x750",
-    "https://images.placeholders.dev/400x750",
-];
 
-export default function Carousel() {
+export default function Carousel(props) {
+
+    const { images, button, buttonAlignment } = props
 
     const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -49,6 +46,10 @@ export default function Carousel() {
                     className="absolute top-1/2 right-4 -translate-y-1/2 bg-white/70 hover:bg-white p-2 rounded-full shadow-md"
                 >
                     <ChevronRight size={32} />
+                </button>
+
+                <button className={`absolute -translate-y-1/2 -translate-x-1/2 bg-success px-5 py-2 btn-text text-white rounded-xs ${buttonAlignment === "mid" ? "top-1/2 left-1/2" : ""} ${buttonAlignment === "bottom" ? "top-3/4 left-1/2" : ""}`}>
+                    {button}
                 </button>
 
                 <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-1">

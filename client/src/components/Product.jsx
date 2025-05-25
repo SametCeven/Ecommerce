@@ -2,8 +2,6 @@ export default function Product(props) {
 
     const { url, title, description, price, discountedPrice, colorChart } = props
 
-    console.log(colorChart)
-
     return (
         <div className="flex flex-col items-center gap-5 w-80">
             <img src={url} alt={title} />

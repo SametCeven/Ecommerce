@@ -2,15 +2,15 @@ import Product from "./Product"
 
 const products = [
     { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
-    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: [] },
-    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: [] },
-    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: [] },
-    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: [] },
-    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: [] },
-    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: [] },
-    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: [] },
-    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: [] },
-    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: [] }
+    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
+    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
+    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
+    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
+    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
+    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
+    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
+    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
+    { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] }
 ]
 
 
