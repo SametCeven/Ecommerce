@@ -11,11 +11,26 @@ export default function PageContent({ children }) {
             <div className="hidden xl1440:block">
                 <NavbarDark></NavbarDark>
             </div>
-            <Header></Header>
-            <Navbar></Navbar>
+
+            <div className="flex justify-between items-center text-text text-[24px] px-5 py-5 xl1440:hidden">
+                <span className='font-bold'> Bandage </span>
+                <Header></Header>
+            </div>
+
+            <div className="xl1440:hidden">
+                <Navbar></Navbar>
+            </div>
+
+            <div className="xl1440:flex justify-between items-center text-text text-[24px] px-5 py-5 hidden xl1440:block">
+                <span className='font-bold'> Bandage </span>
+                <Navbar></Navbar>
+                <Header></Header>
+            </div>
+
             <main>
                 {children}
             </main>
+
             <Footer></Footer>
         </div>
     )
