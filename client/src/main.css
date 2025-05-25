@@ -22,6 +22,8 @@
   --color-lightTextGray : #FAFAFA;
   --color-mutedTex : #BDBDBD;
   --color-secondary : #3C403D;
+
+  --breakpoint-xl1440 : 1440px;
 }
 
 body{
