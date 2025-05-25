@@ -19,14 +19,15 @@ export default function BestsellerProducts() {
     return (
         <div className="flex flex-col items-center gap-5">
 
-            <div className="flex flex-col gap-5 w-60 text-center pb-10">
+            <div className="flex flex-col gap-5 w-60 text-center pb-10 xl1440:w-full">
                 <h4 className="text-secondText"> Featured Products </h4>
                 <h3 className="text-text"> BESTSELLER PRODUCTS </h3>
                 <p className="text-secondText"> Problems trying to resolve the conflict between </p>
             </div>
 
-            <div className="flex flex-col gap-20">
+            <div className="flex flex-col gap-20 xl1440:px-20 xl1440:flex-row xl1440:justify-between xl1440:flex-wrap">
                 {products.map((product, index) =>
+                    index >= (products.length % 4) * 4 ? "" :
                     <Product
                         key={index}
                         url={product.url}
@@ -36,7 +37,6 @@ export default function BestsellerProducts() {
                         discountedPrice={(Math.round(product.discountedPrice * 100) / 100).toFixed(2)}
                         colorChart={product.colorChart}
                     >
-
                     </Product>
                 )}
             </div>

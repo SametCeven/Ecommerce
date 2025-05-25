@@ -3,8 +3,8 @@ export default function Product(props) {
     const { url, title, description, price, discountedPrice, colorChart } = props
 
     return (
-        <div className="flex flex-col items-center gap-5 w-80">
-            <img src={url} alt={title} />
+        <div className="flex flex-col items-center gap-5 w-80 xl1440:w-60">
+            <img src={url} alt={title}/>
             <h5> {title} </h5>
             <p className="link-text"> {description} </p>
             <div className="flex gap-2">

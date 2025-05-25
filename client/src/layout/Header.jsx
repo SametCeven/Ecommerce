@@ -23,7 +23,7 @@ export default function Header() {
 
     return (
         <header className=''>
-            <div className='flex items-center gap-8 xl1440:text-primary text-[16px]'>
+            <div className='flex items-center gap-3 xl1440:gap-8 xl1440:text-primary text-[16px]'>
                 <div className='flex items-center gap-1'>
                     <User size={`${showNavbarXl ? 16 : 24}`} />
                     {showNavbarXl ? <span className='text-[14px] font-bold'> Login / Register </span> : ""}

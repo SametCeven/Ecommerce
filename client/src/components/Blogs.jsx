@@ -17,17 +17,20 @@ export default function Blogs() {
                 <p className="text-secondText w-60"> Problems trying to resolve the conflict between the two major </p>
             </div>
 
-            {blogs.map((blog, index) =>
-                <Blog
-                    key={index}
-                    image={blog.image}
-                    tags={blog.tags}
-                    title={blog.title}
-                    description={blog.description}
-                    date={blog.date}
-                    comments={blog.comments}
-                ></Blog>
-            )}
+            <div className="flex flex-col gap-5 xl1440:flex-row xl1440:flex-wrap">
+                {blogs.map((blog, index) =>
+                    <Blog
+                        key={index}
+                        image={blog.image}
+                        tags={blog.tags}
+                        title={blog.title}
+                        description={blog.description}
+                        date={blog.date}
+                        comments={blog.comments}
+                    ></Blog>
+                )}
+            </div>
+
         </div>
     )
 }
