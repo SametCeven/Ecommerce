@@ -1,4 +1,5 @@
 import BestsellerProducts from "../components/BestsellerProducts";
+import Blogs from "../components/Blogs";
 import Carousel from "../components/Carousel";
 import Container from "../components/Container";
 import EditorsPick from "../components/EditorsPick";
@@ -28,6 +29,7 @@ export default function HomePage(){
             <BestsellerProducts></BestsellerProducts>
             <Carousel images={imagesCarousel2} button={buttonCarousel2} buttonAlignment={buttonAlignmentCarousel2}></Carousel>
             <Container></Container>
+            <Blogs></Blogs>
         </div>
     )
 }
