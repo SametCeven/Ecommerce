@@ -28,16 +28,18 @@ export default function BestsellerProducts() {
             <div className="flex flex-col gap-20 xl1440:px-20 xl1440:flex-row xl1440:justify-between xl1440:flex-wrap">
                 {products.map((product, index) =>
                     index >= (products.length % 4) * 4 ? "" :
-                    <Product
-                        key={index}
-                        url={product.url}
-                        title={product.title}
-                        description={product.description}
-                        price={(Math.round(product.price * 100) / 100).toFixed(2)}
-                        discountedPrice={(Math.round(product.discountedPrice * 100) / 100).toFixed(2)}
-                        colorChart={product.colorChart}
-                    >
-                    </Product>
+                        <div className="w-[20%]"> 
+                            <Product
+                                key={index}
+                                url={product.url}
+                                title={product.title}
+                                description={product.description}
+                                price={(Math.round(product.price * 100) / 100).toFixed(2)}
+                                discountedPrice={(Math.round(product.discountedPrice * 100) / 100).toFixed(2)}
+                                colorChart={product.colorChart}
+                            >
+                            </Product>
+                        </div>
                 )}
             </div>
 
