@@ -23,7 +23,7 @@ export default function HomePage(){
 
 
     return(
-        <div className="flex flex-col gap-40">
+        <div className="flex flex-col items-center justify-center gap-40">
             <Carousel images={imagesCarousel1} button={buttonCarousel1} buttonAlignment={buttonAlignmentCarousel1}></Carousel>
             <EditorsPick></EditorsPick>
             <BestsellerProducts></BestsellerProducts>
