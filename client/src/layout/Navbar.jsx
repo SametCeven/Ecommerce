@@ -21,17 +21,15 @@ export default function Navbar() {
     return (
         <nav className="flex flex-col items-center justify-center gap-5 text-secondText text-[30px] py-20 xl1440:flex-row xl1440:text-[14px] xl1440:py-0">
             <Link to="/"> Home </Link>
-            <Link className="xl1440:hidden"> Product </Link>
-            <Link className="xl1440:hidden"> Pricing </Link>
 
-            <div className="hidden xl1440:flex relative group items-center cursor-pointer">
+            <div className="xl1440:flex relative group items-center cursor-pointer">
 
                 <div className='flex gap-1 items-center'>
-                    <Link>Shop</Link>
-                    <ChevronDown />
+                    <Link to="/shop">Shop</Link>
+                    <ChevronDown className='hidden xl1440:block' />
                 </div>
 
-                <div className='absolute top-full left-0 hidden group-hover:flex p-4 px-16 gap-32 z-50 bg-white shadow-lg rounded-md'>
+                <div className='absolute top-full left-0 hidden xl1440:group-hover:flex p-4 px-16 gap-32 z-50 bg-white shadow-lg rounded-md'>
 
                     <div className='flex flex-col gap-5'>
                         <span className='block font-bold py-5'> Women </span>
@@ -50,10 +48,10 @@ export default function Navbar() {
 
             </div>
 
-            <Link className="hidden xl1440:block"> About </Link>
-            <Link className="hidden xl1440:block"> Blog </Link>
+            <Link > About </Link>
+            <Link > Blog </Link>
             <Link> Contact </Link>
-            <Link className="hidden xl1440:block"> Pages </Link>
+            <Link > Pages </Link>
 
         </nav>
     )

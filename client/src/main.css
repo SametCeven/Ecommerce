@@ -22,6 +22,9 @@
   --color-lightTextGray : #FAFAFA;
   --color-mutedTex : #BDBDBD;
   --color-secondary : #3C403D;
+  --color-lightGray2 : #ECECEC;
+  --color-fill : #F9F9F9;
+  --color-border: #DDDDDD;
 
   --breakpoint-xl1440 : 1440px;
 }
