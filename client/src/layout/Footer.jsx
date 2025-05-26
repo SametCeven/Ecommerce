@@ -51,10 +51,10 @@ export default function Footer() {
                     <div className='flex flex-col gap-2'>
                         <h3 className='pb-2 text-text'> Get in Touch </h3>
                         <form className='flex'>
-                            <label className='bg-[#F9F9F9] border border-[#E6E6E6] rounded-lg p-5 font-bold w-50'>
+                            <label className='bg-[#F9F9F9] border border-[#E6E6E6] rounded-xs p-5 font-bold w-50'>
                                 <input className='w-40' type="text" placeholder='Your Email' />
                             </label>
-                            <button className='bg-primary text-lightText border rounded-md p-5 text-center'> Subscribe </button>
+                            <button className='btn-primary'> Subscribe </button>
                         </form>
                         <span className='text-secondText'> Lore imp sum dolor Amit </span>
                     </div>

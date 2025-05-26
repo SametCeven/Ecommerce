@@ -48,10 +48,12 @@ export default function Carousel(props) {
                     <ChevronRight size={32} />
                 </button>
 
-                <button 
-                    className={`absolute -translate-y-1/2 -translate-x-1/2 bg-success px-10 py-5 btn-text text-white rounded-xs ${buttonAlignment === "mid" ? "top-1/2 left-1/2" : ""} ${buttonAlignment === "bottom" ? "top-3/4 left-1/2" : ""}`}>
-                    {button}
-                </button>
+                {button ?
+                    <button
+                        className={`absolute -translate-y-1/2 -translate-x-1/2 btn-success  ${buttonAlignment === "mid" ? "top-1/2 left-1/2" : ""} ${buttonAlignment === "bottom" ? "top-3/4 left-1/2" : ""}`}>
+                        {button}
+                    </button>
+                    : ""}
 
                 <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-1">
                     {images.map((_, index) => (

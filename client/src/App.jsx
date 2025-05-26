@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom/cjs/react-router-
 import PageContent from "./layout/PageContent";
 import HomePage from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 export default function App() {
 
@@ -11,6 +12,7 @@ export default function App() {
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/shop" exact component={ShopPage} />
+        <Route path="/product/:id" exact component={ProductDetailPage} />
       </Switch>
     </PageContent>
   )
