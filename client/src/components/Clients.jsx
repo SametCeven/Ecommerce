@@ -11,7 +11,7 @@ const clients = [
 export default function Clients() {
 
     return (
-        <div className="flex flex-col gap-5 items-center text-secondText xl1440:flex-row">
+        <div className="flex flex-col gap-5 items-center text-secondText xl1440:flex-row justify-center py-10">
             {clients.map((client, index) =>
                 <div className="w-40" key={index}>
                     <img className="w-full" src={client} alt={client} key={index} />

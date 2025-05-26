@@ -5,7 +5,7 @@ export default function ProductDetails(props) {
     const { selectedProduct } = props
 
     return (
-        <div className="flex flex-col gap-10 py-10">
+        <div className="flex flex-col gap-10 py-20">
             <div className="flex gap-1 justify-between font-bold text-secondText text-[12px] xl1440:justify-center xl1440:gap-10">
                 <span> Description </span>
                 <span> Additional Information </span>
@@ -14,7 +14,7 @@ export default function ProductDetails(props) {
                 </span>
             </div>
 
-            <div className="flex flex-col gap-10 items-center xl1440:flex-row xl1440:pt-10">
+            <div className="flex flex-col gap-10 xl1440:flex-row xl1440:pt-10">
 
                 <img src="https://images.placeholders.dev/350x400" alt="" className="rounded-md" />
 
