@@ -3,6 +3,7 @@ import Categories from '../components/Categories';
 import Product from '../components/Product';
 import Pagination from '../components/Pagination';
 import { useState } from 'react';
+import Clients from '../components/Clients';
 
 const products = [
     { url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
@@ -72,7 +73,7 @@ export default function ShopPage() {
 
             <Pagination length={products.length} itemsPerPage={4} ></Pagination>
 
-
+            <Clients></Clients>
 
 
         </div>
