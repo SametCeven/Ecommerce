@@ -4,10 +4,10 @@ import { Link } from "react-router-dom"
 export default function Footer() {
 
     return (
-        <footer className='mt-20 mb-10'>
+        <footer className='mt-20 mb-10 w-full'>
 
             <div className='bg-lightGray'>
-                <div className='mx-5 xl1440:mx-50 xl1440:border-b border-b-muted py-20 flex flex-col justify-center xl1440:flex-row xl1440:justify-between xl1440:items-center'>
+                <div className='xl1440:border-b border-b-muted py-20 flex flex-col justify-center xl1440:flex-row xl1440:justify-between xl1440:items-center'>
                     <span className="text-[24px] text-text font-bold"> Bandage </span>
                     <div className='flex gap-5 mt-5 text-primary'>
                         <Facebook />
@@ -17,7 +17,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className='mx-5 xl1440:mx-50'>
+            <div className=''>
                 <div className='flex flex-col gap-10 mt-20 xl1440:flex-row xl1440:justify-between'>
 
                     <div className='flex flex-col gap-2 link-text'>

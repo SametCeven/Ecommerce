@@ -9,7 +9,7 @@ const categories = [
 export default function Categories() {
 
     return (
-        <div className="flex flex-col gap-5 w-80">
+        <div className="flex flex-col gap-5 w-80 xl1440:w-full xl1440:flex-row">
             {categories.map((category, index) =>
                 <div className="flex flex-col items-center relative" key={index}>
                     <img className="w-full" src={category.url} alt={category.title} key={index}></img>

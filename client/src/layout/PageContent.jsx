@@ -20,7 +20,7 @@ export default function PageContent({ children }) {
                 <Navbar></Navbar>
             </div>
 
-            <div className="xl1440:flex justify-between items-center text-text text-[24px] px-5 py-5 hidden w-full">
+            <div className="xl1440:flex justify-between items-center text-text text-[24px] px-40 py-5 hidden w-full">
                 <span className='font-bold'> Bandage </span>
                 <Navbar></Navbar>
                 <Header></Header>
@@ -30,7 +30,9 @@ export default function PageContent({ children }) {
                 {children}
             </main>
 
-            <Footer></Footer>
+            <div className="px-5 xl1440:px-40 w-full">
+                <Footer></Footer>
+            </div>
         </div>
     )
 }

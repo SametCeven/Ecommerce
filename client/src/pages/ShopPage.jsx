@@ -29,8 +29,8 @@ export default function ShopPage() {
     const totalPages = Math.ceil(products.length / itemsPerPage)
 
     return (
-        <div className="flex flex-col items-center justify-center gap-20">
-            <div className='flex flex-col items-center gap-20'>
+        <div className="flex flex-col items-center justify-center gap-20 px-5 xl1440:px-40">
+            <div className='flex flex-col items-center gap-20 xl1440:flex-row justify-between w-full'>
                 <h3> Shop </h3>
                 <div className="flex gap-5">
                     <h6>Home</h6>
@@ -41,7 +41,7 @@ export default function ShopPage() {
 
             <Categories></Categories>
 
-            <div className='flex flex-col items-center justify-center gap-10'>
+            <div className='flex flex-col items-center justify-center gap-10 xl1440:flex-row xl1440:justify-between w-full'>
                 <span className='font-bold text-[14px] text-secondText'> Showing all {products.length} results </span>
                 <div className='flex items-center gap-5'>
                     <span className='font-bold text-[14px] text-secondText'> Views: </span>
@@ -61,7 +61,7 @@ export default function ShopPage() {
                 </div>
             </div>
 
-            <div className="flex flex-col gap-20 xl1440:px-20 xl1440:flex-row xl1440:justify-between xl1440:flex-wrap">
+            <div className="flex flex-col gap-20 xl1440:flex-row xl1440:justify-between xl1440:flex-wrap xl1440:gap-5 xl1440:w-full">
                 {currentProducts.map((product, index) =>
                     index >= (products.length % 4) * 4 ? "" :
                         <div className="w-[20%]" key={index}>
