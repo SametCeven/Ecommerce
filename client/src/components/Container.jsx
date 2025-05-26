@@ -10,8 +10,8 @@ export default function Container() {
                 <h2> Part of the Neural Universe </h2>
                 <h4 className="text-secondText"> We know how large, objects will act, but things on a small scale. </h4>
                 <div className="flex flex-col gap-5 xl1440:flex-row">
-                    <button className="px-10 py-3 rounded-md text-white bg-primary btn-text"> BUY NOW </button>
-                    <button className="px-10 py-3 rounded-md text-primary bg-white btn-text border border-primary"> Learn More </button>
+                    <button className="btn-primary"> BUY NOW </button>
+                    <button className="btn-primary-reverse"> Learn More </button>
                 </div>
             </div>
 
