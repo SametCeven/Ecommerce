@@ -20,6 +20,14 @@ const products = [
 
 export default function ShopPage() {
 
+    const [currentPage, setCurrentPage] = useState(1)
+    const itemsPerPage = 4
+
+    const startIndex = (currentPage - 1) * itemsPerPage
+    const currentProducts = products.slice(startIndex, startIndex + itemsPerPage)
+
+    const totalPages = Math.ceil(products.length / itemsPerPage)
+
     return (
         <div className="flex flex-col items-center justify-center gap-20">
             <div className='flex flex-col items-center gap-20'>
@@ -54,7 +62,7 @@ export default function ShopPage() {
             </div>
 
             <div className="flex flex-col gap-20 xl1440:px-20 xl1440:flex-row xl1440:justify-between xl1440:flex-wrap">
-                {products.map((product, index) =>
+                {currentProducts.map((product, index) =>
                     index >= (products.length % 4) * 4 ? "" :
                         <div className="w-[20%]" key={index}>
                             <Product
@@ -71,7 +79,7 @@ export default function ShopPage() {
                 )}
             </div>
 
-            <Pagination length={products.length} itemsPerPage={4} ></Pagination>
+            <Pagination length={products.length} itemsPerPage={itemsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} ></Pagination>
 
             <Clients></Clients>
 
