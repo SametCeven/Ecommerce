@@ -26,6 +26,7 @@
   --color-fill : #F9F9F9;
   --color-border: #DDDDDD;
 
+
   --breakpoint-xl1440 : 1440px;
 }
 
@@ -75,4 +76,20 @@ p{
 
 .link-text{
   @apply text-[14px] font-medium leading-[24px] tracking-[0.2px] text-secondText
+}
+
+.btn-primary{
+  @apply bg-primary text-white px-10 py-5 border border-primary rounded-xs text-[14px] font-bold leading-[28px] tracking-[0.2px]
+}
+
+.btn-primary-small{
+  @apply bg-primary text-white px-3 py-3 border border-primary rounded-xs text-[14px] font-bold leading-[28px] tracking-[0.2px]
+}
+
+.btn-primary-reverse{
+  @apply bg-white text-primary px-10 py-5 border border-primary rounded-xs text-[14px] font-bold leading-[28px] tracking-[0.2px]
+}
+
+.btn-success{
+  @apply bg-success text-white px-10 py-5 border border-success rounded-xs text-[14px] font-bold leading-[28px] tracking-[0.2px]
 }
