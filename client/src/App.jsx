@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import PageContent from "./layout/PageContent";
 import HomePage from "./pages/HomePage";
+import ShopPage from "./pages/ShopPage";
 
 export default function App() {
 
@@ -9,6 +10,7 @@ export default function App() {
     <PageContent>
       <Switch>
         <Route path="/" exact component={HomePage} />
+        <Route path="/shop" exact component={ShopPage} />
       </Switch>
     </PageContent>
   )
