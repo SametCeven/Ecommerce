@@ -3,6 +3,7 @@ import PageContent from "./layout/PageContent";
 import HomePage from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import ContactPage from "./pages/ContractPage";
 
 export default function App() {
 
@@ -11,8 +12,9 @@ export default function App() {
     <PageContent>
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <Route path="/shop" exact component={ShopPage} />
-        <Route path="/product/:id" exact component={ProductDetailPage} />
+        <Route path="/shop" component={ShopPage} />
+        <Route path="/product/:id" component={ProductDetailPage} />
+        <Route path="/contact" component={ContactPage} />
       </Switch>
     </PageContent>
   )
