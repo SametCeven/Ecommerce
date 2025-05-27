@@ -1,6 +1,7 @@
-import { ChevronRight, Facebook, Instagram, Twitter } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Cta from '../components/Cta';
+import TeamMember from '../components/TeamMember';
 
 const images = [
     "https://images.placeholders.dev/350x400",
@@ -45,23 +46,7 @@ export default function TeamPage() {
                 <h2 className='text-text xl1440:py-10'> Meet Our Team </h2>
                 <div className='flex flex-col justify-center gap-10 xl1440:flex-row'>
                     {teamMembers.map((teamMember, index) =>
-                        <div className='flex flex-col gap-5 xl1440:w-[30%]' key={index}>
-                            <img src={teamMember.url} alt={teamMember.url} />
-                            <h5 className='text-text'> {teamMember.name} </h5>
-                            <h6 className='text-secondText'> {teamMember.title} </h6>
-                            <div className='flex justify-center gap-5'>
-                                <Link to={teamMember.facebookUrl}>
-                                    <Facebook color='#335BF5'></Facebook>
-                                </Link>
-                                <Link to={teamMember.instagramUrl}>
-                                    <Instagram color='#E51F5A'></Instagram>
-                                </Link>
-                                <Link to={teamMember.twitterUrl}>
-                                    <Twitter color='#21A6DF'></Twitter>
-                                </Link>
-                            </div>
-                        </div>
-
+                        <TeamMember index={index} teamMember={teamMember} key={index}></TeamMember>
                     )}
                 </div>
             </div>
