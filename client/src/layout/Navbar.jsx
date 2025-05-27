@@ -50,7 +50,7 @@ export default function Navbar() {
 
             <Link > About </Link>
             <Link > Blog </Link>
-            <Link> Contact </Link>
+            <Link to="/contact"> Contact </Link>
             <Link > Pages </Link>
 
         </nav>
