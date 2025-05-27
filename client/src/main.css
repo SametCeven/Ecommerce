@@ -25,6 +25,7 @@
   --color-lightGray2 : #ECECEC;
   --color-fill : #F9F9F9;
   --color-border: #DDDDDD;
+  --color-hover: #2A7CC7;
 
 
   --breakpoint-xl1440 : 1440px;
@@ -92,4 +93,8 @@ p{
 
 .btn-success{
   @apply bg-success text-white px-10 py-5 border border-success rounded-xs text-[14px] font-bold leading-[28px] tracking-[0.2px]
+}
+
+.btn-white{
+  @apply bg-hover text-white px-10 py-5 border border-white rounded-xs text-[14px] font-bold leading-[28px] tracking-[0.2px]
 }
