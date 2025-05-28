@@ -6,6 +6,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import ContactPage from "./pages/ContractPage";
 import TeamPage from "./pages/TeamPage";
 import AboutUsPage from "./pages/AboutUsPage";
+import SignupPage from "./pages/SignupPage";
 
 export default function App() {
 
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/contact" component={ContactPage} />
         <Route path="/team" component={TeamPage} />
         <Route path="/about" component={AboutUsPage} />
+        <Route path="/signup" component={SignupPage} />
       </Switch>
     </PageContent>
   )
