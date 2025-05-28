@@ -1,5 +1,6 @@
 import { User, Search, ShoppingCart, Menu, Heart } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 const initialCartCount = 0;
 const initialFavCount = 0;
@@ -24,10 +25,12 @@ export default function Header() {
     return (
         <header className=''>
             <div className='flex items-center gap-3 xl1440:gap-8 xl1440:text-primary text-[16px]'>
-                <div className='flex items-center gap-1'>
-                    <User size={`${showNavbarXl ? 16 : 24}`} />
-                    {showNavbarXl ? <span className='text-[14px] font-bold'> Login / Register </span> : ""}
-                </div>
+                <Link to="/signup">
+                    <div className='flex items-center gap-1'>
+                        <User size={`${showNavbarXl ? 16 : 24}`} />
+                        {showNavbarXl ? <span className='text-[14px] font-bold'> Login / Register </span> : ""}
+                    </div>
+                </Link>
                 <Search size={`${showNavbarXl ? 16 : 24}`} />
                 <div className='flex items-center gap-1'>
                     <ShoppingCart size={`${showNavbarXl ? 16 : 24}`} />
