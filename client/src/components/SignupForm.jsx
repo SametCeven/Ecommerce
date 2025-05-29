@@ -87,8 +87,18 @@ const validationRules = {
 
 }
 
+import { useSelector, useDispatch } from "react-redux"
+import { fetchRoles } from "../store/actions/clientActions"
+
 
 export default function SignupForm() {
+
+    /* const rolesRedux = useSelector(store => store.client.roles)
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        dispatch(fetchRoles())
+    },[])
+    console.log(rolesRedux) */
 
     const history = useHistory()
     const [loadingSubmit, setLoadingSubmit] = useState(false)
