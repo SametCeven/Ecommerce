@@ -7,8 +7,6 @@ const clientIinital = {
     roles: [],
     theme: "",
     language: "",
-    rolesLoading: false,
-    rolesError: null,
 }
 
 export function clientReducer(state = clientIinital, action){
@@ -21,12 +19,7 @@ export function clientReducer(state = clientIinital, action){
             return {...state, theme: action.payload}
         case(clientActions.setLanguage):
             return {...state, language: action.payload}
-        
-        case(clientActions.fetchRolesStarted):
-            return {...state, rolesLoading: true, rolesError: null}
-        case(clientActions.fetchRolesFailed):
-            return {...state, rolesLoading: false, rolesError: action.payload}
-
+            
         default:
             return state
     }

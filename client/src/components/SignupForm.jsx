@@ -88,17 +88,17 @@ const validationRules = {
 }
 
 import { useSelector, useDispatch } from "react-redux"
-import { fetchRoles } from "../store/actions/clientActions"
+import { fetchRoles } from "../store/actions/globalActions"
 
 
 export default function SignupForm() {
-
-    /* const rolesRedux = useSelector(store => store.client.roles)
     const dispatch = useDispatch()
-    useEffect(()=>{
+    const roles = useSelector(store => store.global.roles)
+    const defaultRoleId = useSelector(store => store.global.defaultRoleId)
+
+    useEffect(() => {
         dispatch(fetchRoles())
-    },[])
-    console.log(rolesRedux) */
+    }, [])
 
     const history = useHistory()
     const [loadingSubmit, setLoadingSubmit] = useState(false)
@@ -114,6 +114,16 @@ export default function SignupForm() {
         defaultValues: initialFormData,
         mode: "all"
     })
+
+    useEffect(()=>{
+        if(defaultRoleId){
+            reset({
+                ...initialFormData,
+                role_id: defaultRoleId.toString(),
+            })
+        }
+
+    },[defaultRoleId, roles])
 
     async function formSubmit(formData) {
         const { passwordValidation, ...cleanFormData } = formData
@@ -132,31 +142,11 @@ export default function SignupForm() {
         }
     }
 
-    const [roles, setRoles] = useState();
-    const [defaultRoleId, setDefaultRoleId] = useState("")
     const roleId = watch("role_id")
     const password = watch("password")
 
-
-    useEffect(() => {
-        axiosInstance
-            .get("/roles")
-            .then((res) => {
-                setRoles(res.data)
-                const defaultRole = res.data.find(role => role.code === "customer")
-                if (defaultRole) setDefaultRoleId(defaultRole.id)
-            })
-    }, [])
-
-    useEffect(() => {
-        if (defaultRoleId) {
-            reset({
-                ...initialFormData,
-                role_id: defaultRoleId.toString(),
-            })
-        }
-    }, [defaultRoleId])
-
+    const form = watch()
+    console.log(form)
 
     return (
         <form className="flex flex-col gap-10" onSubmit={handleSubmit(formSubmit)}>

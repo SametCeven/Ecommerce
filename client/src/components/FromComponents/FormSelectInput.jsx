@@ -2,6 +2,7 @@ export default function FormSelectInput(props) {
 
     const { labelText, register, registerName, options, optionValueKey, optionTextKey } = props
 
+
     return (
 
         <label className="input-label">
@@ -12,7 +13,12 @@ export default function FormSelectInput(props) {
             >
                 {options &&
                     options.map((option, index) =>
-                        <option value={option[optionValueKey]} key={index}> {option[optionTextKey]} </option>
+                        <option
+                            value={option[optionValueKey]}
+                            key={index}
+                        >
+                            {option[optionTextKey]}
+                        </option>
                     )
                 }
 

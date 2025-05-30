@@ -37,18 +37,3 @@ export function creatorActionLanguage(newLangugage) {
     })
 }
 
-export function fetchRoles(){
-    return async (dispatch, getState) => {
-        dispatch({type: clientActions.fetchRolesStarted})
-
-        try{
-            const res = await axiosInstance.get("roles")
-            dispatch({type: clientActions.setRoles, payload: res.data})
-        }
-        catch(err){
-            console.error("Failed to fetch roles",err)
-            dispatch({type: clientActions.fetchRolesFailed, payload: err.message})
-        }
-
-    }
-}
