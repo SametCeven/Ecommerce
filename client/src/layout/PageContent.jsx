@@ -30,9 +30,7 @@ export default function PageContent({ children }) {
                 {children}
             </main>
 
-            <div className="px-5 xl1440:px-40 w-full">
-                <Footer></Footer>
-            </div>
+            <Footer></Footer>
         </div>
     )
 }

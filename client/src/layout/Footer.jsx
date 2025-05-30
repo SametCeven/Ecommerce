@@ -4,10 +4,10 @@ import { Link } from "react-router-dom"
 export default function Footer() {
 
     return (
-        <footer className='mt-20 mb-10 w-full'>
+        <footer className='mt-20 w-full flex flex-col gap-10'>
 
             <div className='bg-lightGray'>
-                <div className='xl1440:border-b border-b-muted py-20 flex flex-col justify-center xl1440:flex-row xl1440:justify-between xl1440:items-center'>
+                <div className='xl1440:border-b border-b-muted py-20 flex flex-col justify-center xl1440:flex-row xl1440:justify-between xl1440:items-center px-10 xl1440:px-40'>
                     <span className="text-[24px] text-text font-bold"> Bandage </span>
                     <div className='flex gap-5 mt-5 text-primary'>
                         <Facebook />
@@ -18,12 +18,12 @@ export default function Footer() {
             </div>
 
             <div className=''>
-                <div className='flex flex-col gap-10 mt-20 xl1440:flex-row xl1440:justify-between'>
+                <div className='flex flex-col gap-10 xl1440:flex-row xl1440:justify-between px-10 xl1440:px-40'>
 
                     <div className='flex flex-col gap-2 link-text'>
                         <h3 className='pb-2 text-text'> Company Info </h3>
-                        <Link> About Us </Link>
-                        <Link> Career </Link>
+                        <Link to="/about"> About Us </Link>
+                        <Link to="/team"> Team </Link>
                         <Link> We are hiring </Link>
                         <Link> Blog </Link>
                     </div>
@@ -60,12 +60,13 @@ export default function Footer() {
                     </div>
 
                 </div>
+            </div>
 
-                <div className='flex flex-col items-center text-[14px] font-bold text-secondText mt-30 xl1440:items-baseline xl1440:flex-row xl1440:gap-5'>
+            <div className='bg-lightGray flex items-center py-5 justify-center xl1440:justify-normal'>
+                <div className='flex flex-col items-center text-[14px] font-bold text-secondText xl1440:items-baseline xl1440:flex-row xl1440:gap-5 px-10 xl1440:px-40'>
                     <span> Made With Love By</span>
                     <span> Finland All Right Reserved </span>
                 </div>
-
             </div>
 
         </footer>
