@@ -5,8 +5,8 @@ export const clientActions = {
     setRoles: "SET_ROLES",
     setTheme: "SET_THEME",
     setLanguage: "SET_LANGUAGE",
-    fetchRolesStarted: "FETCH_ROLES_STARTED",
-    fetchRolesFailed: "FETCH_ROLES_FAILED",
+    loginUserStarted: "LOGIN_USER_STARTED",
+    loginUserFailed: "LOGIN_USER_FAILED",
 }
 
 export function creatorActionUser(newUser) {
@@ -37,3 +37,20 @@ export function creatorActionLanguage(newLangugage) {
     })
 }
 
+export function login(creds){
+    return async (dispatch, getState) => {
+        dispatch({type: clientActions.loginUserStarted})
+
+        try{
+            const res = await axiosInstance.post("/login", creds)
+            dispatch({type: clientActions.setUser, payload: res.data})
+            return res.data
+        }
+        catch(err){
+            console.error("Failed to login",err)
+            dispatch({type: clientActions.loginUserFailed, payload: err.message})
+            throw err
+        }
+
+    }
+}
