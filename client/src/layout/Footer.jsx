@@ -22,8 +22,8 @@ export default function Footer() {
 
                     <div className='flex flex-col gap-2 link-text'>
                         <h3 className='pb-2 text-text'> Company Info </h3>
-                        <Link> About Us </Link>
-                        <Link> Career </Link>
+                        <Link to="/about"> About Us </Link>
+                        <Link to="/team"> Team </Link>
                         <Link> We are hiring </Link>
                         <Link> Blog </Link>
                     </div>
