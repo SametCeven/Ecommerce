@@ -2,11 +2,14 @@ import { ChevronDown, ChevronRight, LayoutGrid, List } from 'lucide-react';
 import Categories from '../components/Categories';
 import Product from '../components/Product';
 import Pagination from '../components/Pagination';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Clients from '../components/Clients';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../store/actions/productActions';
+import Spinner from '../components/Spinner';
 
-const products = [
+/* const products = [
     { id: 1, url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
     { id: 2, url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
     { id: 3, url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
@@ -17,9 +20,18 @@ const products = [
     { id: 8, url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
     { id: 9, url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] },
     { id: 10, url: "https://images.placeholders.dev/350x400", title: "title", description: "description", price: 20.00, discountedPrice: 10.00, colorChart: ["#23A6F0", "#23856D", "#E77C40", "#252B42"] }
-]
+] */
 
 export default function ShopPage() {
+
+    const dispatch = useDispatch()
+    const products = useSelector(store => store.product.productList)
+    const productLoading = useSelector(store => store.product.productsLoading)
+
+    useEffect(() => {
+        dispatch(fetchProducts())
+    }, [])
+
 
     const [currentPage, setCurrentPage] = useState(1)
     const itemsPerPage = 4
@@ -28,6 +40,7 @@ export default function ShopPage() {
     const currentProducts = products.slice(startIndex, startIndex + itemsPerPage)
 
     const totalPages = Math.ceil(products.length / itemsPerPage)
+
 
     return (
         <div className="flex flex-col items-center justify-center gap-20 px-5 xl1440:px-40">
@@ -63,17 +76,18 @@ export default function ShopPage() {
             </div>
 
             <div className="flex flex-col gap-20 xl1440:flex-row xl1440:justify-between xl1440:flex-wrap xl1440:gap-5 xl1440:w-full">
+                {productLoading && <Spinner></Spinner>}
                 {currentProducts.map((product, index) =>
                     index >= (products.length % 4) * 4 ? "" :
                         <div className="w-[20%]" key={index}>
                             <Link to={`/product/${product.id}`}>
                                 <Product
                                     key={index}
-                                    url={product.url}
-                                    title={product.title}
+                                    url={product.images[0].url}
+                                    title={product.name}
                                     description={product.description}
                                     price={(Math.round(product.price * 100) / 100).toFixed(2)}
-                                    discountedPrice={(Math.round(product.discountedPrice * 100) / 100).toFixed(2)}
+                                    discountedPrice={(Math.round(product.price * 100) / 100).toFixed(2)}
                                     colorChart={product.colorChart}
                                 >
                                 </Product>
