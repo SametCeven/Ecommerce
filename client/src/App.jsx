@@ -23,8 +23,8 @@ export default function App() {
     }
   },[])
 
-  const user = useSelector(store => store.client.user)
-  console.log(user)
+
+
 
   return (
     <PageContent>
