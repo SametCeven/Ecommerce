@@ -10,6 +10,7 @@ export const productActions = {
     setFilter: "SET_FILTER",
     fetchProductsStarted: "FETCH_PRODUCTS_STARTED",
     fetchProductsFailed: "FETCH_PRODUCTS_FAILED",
+    setSelectedProduct: "SET_SELECTED_PRODUCT",
 }
 
 export function creatorActionCategories(newCategories){
@@ -61,6 +62,13 @@ export function creatorActionFilter(newFilter){
     })
 }
 
+export function creatorActionSelectedProduct(newProduct){
+    return({
+        type: productActions.setSelectedProduct,
+        payload: newProduct,
+    })
+}
+
 
 
 
@@ -73,6 +81,23 @@ export function fetchProductsWithSortAndFilter(categoryId,sortingParam, filterTe
 
             dispatch({type: productActions.setProductList, payload: res.data.products})
             dispatch({type: productActions.setTotal, payload: res.data.total})
+        }
+        catch(err){
+            console.error("Failed to fetch products",err)
+            dispatch({type: productActions.fetchProductsFailed, payload: err.message})
+        }
+    }
+}
+
+
+export function fetchProduct(productId){
+    return async (dispatch, getState) => {
+        dispatch({type: productActions.fetchProductsStarted})
+
+        try{
+            const res = await axiosInstance.get(`products/${productId}`)
+
+            dispatch({type: productActions.setSelectedProduct, payload: res.data})
         }
         catch(err){
             console.error("Failed to fetch products",err)

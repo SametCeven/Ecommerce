@@ -55,7 +55,7 @@ export default function ShopPage() {
 
 
     return (
-        <div className="flex flex-col items-center justify-center gap-20 px-5 xl1440:px-40">
+        <div className="flex flex-col items-center justify-center gap-20 xl1440:px-40">
             <div className='flex flex-col items-center gap-20 xl1440:flex-row justify-between w-full'>
                 <h3> Shop </h3>
                 <div className="flex gap-5">
@@ -102,7 +102,7 @@ export default function ShopPage() {
                     productList.map((product, index) =>
 
                         <div className="w-[20%]" key={index}>
-                            <Link to={`/product/${product.id}`}>
+                            <Link to={`/product/${product.name}/${product.id}`}>
                                 <Product
                                     key={index}
                                     url={product.images[0].url}

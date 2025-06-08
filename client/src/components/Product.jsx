@@ -3,7 +3,7 @@ export default function Product(props) {
     const { url, title, description, price, discountedPrice, colorChart } = props
 
     return (
-        <div className="flex flex-col items-center gap-5 w-60">
+        <div className="flex flex-col items-center gap-5 w-60 h-140 p-5 hover:border hover:border-primary hover:rounded-2xl">
             <img src={url} alt={title} />
             <h5> {title} </h5>
             <p className="link-text"> {description} </p>
