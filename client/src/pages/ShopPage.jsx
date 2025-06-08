@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronRight, LayoutGrid, List } from 'lucide-react';
+import { ChevronRight, LayoutGrid, List } from 'lucide-react';
 import Categories from '../components/Categories';
 import Product from '../components/Product';
 import Pagination from '../components/Pagination';
@@ -31,7 +31,6 @@ export default function ShopPage() {
 
     function handleFilterSubmit(e) {
         e.preventDefault()
-        console.log(categoryId, sortingParam, filterText)
         dispatch(fetchProductsWithSortAndFilter(categoryId, sortingParam, filterText))
     }
 

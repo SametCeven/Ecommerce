@@ -98,7 +98,7 @@ export function fetchProductsOfCategories(categoryId){
 export function fetchProductsWithSortAndFilter(categoryId,sortingParam, filterText){
     return async (dispatch, getState) => {
         dispatch({type: productActions.fetchProductsStarted})
-        console.log(`products?category=${categoryId}&sort=${sortingParam}&filter=${filterText}`)
+        
         try{
             const res = await axiosInstance.get(`products?category=${categoryId}&sort=${sortingParam}&filter=${filterText}`)
 
