@@ -8,6 +8,8 @@ const productInitial = {
     offset: 0,
     filter: "",
     fetchState: "NOT_FETCHED",
+    productsLoading: false,
+    productsError: null,
 }
 
 export function productReducer(state = productInitial, action){
@@ -15,7 +17,7 @@ export function productReducer(state = productInitial, action){
         case(productActions.setCategories):
             return {...state, categories: action.payload}
         case(productActions.setProductList):
-            return {...state, productList: action.payload}
+            return {...state, productList: action.payload, productsLoading: false}
         case(productActions.setTotal):
             return {...state, total: action.payload}
         case(productActions.setFetchState):
@@ -26,6 +28,13 @@ export function productReducer(state = productInitial, action){
             return {...state, offset: action.payload}
         case(productActions.setFilter):
             return {...state, filter: action.payload}
+
+        case(productActions.fetchProductsStarted):
+            return {...state, productsLoading: true, productsError: null}
+        case(productActions.fetchProductsFailed):
+            return {...state, productsLoading: false, productsError: action.payload}
+
+
         default:
             return state
     }

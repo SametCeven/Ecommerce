@@ -1,3 +1,5 @@
+import axiosInstance from "../../services/api"
+
 export const productActions = {
     setCategories: "SET_CATEGORIES",
     setProductList: "SET_PRODUCT_LIST",
@@ -6,6 +8,8 @@ export const productActions = {
     setLimit: "SET_LIMIT",
     setOffset: "SET_OFFSET",
     setFilter: "SET_FILTER",
+    fetchProductsStarted: "FETCH_PRODUCTS_STARTED",
+    fetchProductsFailed: "FETCH_PRODUCTS_FAILED",
 }
 
 export function creatorActionCategories(newCategories){
@@ -55,4 +59,21 @@ export function creatorActionFilter(newFilter){
         type: clientActions.setFilter,
         payload: newFilter,
     })
+}
+
+
+export function fetchProducts(){
+    return async (dispatch, getState) => {
+        dispatch({type: productActions.fetchProductsStarted})
+        
+        try{
+            const res = await axiosInstance.get("products")
+            dispatch({type: productActions.setProductList, payload: res.data.products})
+            dispatch({type: productActions.setTotal, payload: res.data.total})
+        }
+        catch(err){
+            console.error("Failed to fetch products",err)
+            dispatch({type: productActions.fetchProductsFailed, payload: err.message})
+        }
+    }
 }
