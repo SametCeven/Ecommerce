@@ -32,7 +32,7 @@ export default function App() {
         <Route path="/" exact component={HomePage} />
         <Route path="/shop/:gender/:categoryName/:categoryId" component={ShopPage} />
         <Route path="/shop" component={ShopPage} />
-        <Route path="/product/:id" component={ProductDetailPage} />
+        <Route path="/product/:productNameSlug/:productId" component={ProductDetailPage} />
         <Route path="/contact" component={ContactPage} />
         <Route path="/team" component={TeamPage} />
         <Route path="/about" component={AboutUsPage} />
