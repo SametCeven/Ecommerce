@@ -4,7 +4,7 @@ const productInitial = {
     categories: [],
     productList: [],
     total: 0,
-    limit: 25,
+    limit: 24,
     offset: 0,
     filter: "",
     fetchState: "NOT_FETCHED",

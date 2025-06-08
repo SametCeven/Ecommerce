@@ -6,58 +6,52 @@ import { useEffect, useState } from 'react';
 import Clients from '../components/Clients';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts, fetchProductsOfCategories, fetchProductsWithSortAndFilter } from '../store/actions/productActions';
+import { creatorActionOffset, fetchProductsWithSortAndFilter } from '../store/actions/productActions';
 import Spinner from '../components/Spinner';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
+const sortMap = {
+    priceAscending: "price:asc",
+    priceDescending: "price:desc",
+    ratingAscending: "rating:asc",
+    ratingDescending: "rating:desc",
+}
+
+
+
 export default function ShopPage() {
 
-    const { gender, categoryName, categoryId="" } = useParams()
-
+    const { gender, categoryName, categoryId = "" } = useParams()
+    const { productList, productsLoading, limit, total, offset } = useSelector(store=>store.product)
     const dispatch = useDispatch()
-    const products = useSelector(store => store.product.productList)
-    const productLoading = useSelector(store => store.product.productsLoading)
     const [sortingParam, setSortingParam] = useState("")
     const [filterText, setFilterText] = useState("")
+    const [currentPage, setCurrentPage] = useState(1)
+
 
     useEffect(() => {
-        if (categoryId) {
-            dispatch(fetchProductsOfCategories(categoryId))
-        } else {
-            dispatch(fetchProducts())
-        }
-    }, [gender, categoryId])
+        let newOffset = limit * (currentPage - 1)
+        dispatch(creatorActionOffset(newOffset))
+        dispatch(fetchProductsWithSortAndFilter(categoryId, sortingParam, filterText, limit, newOffset))
+    }, [gender, categoryId, currentPage])
 
 
     function handleFilterSubmit(e) {
         e.preventDefault()
-        dispatch(fetchProductsWithSortAndFilter(categoryId, sortingParam, filterText))
+        dispatch(fetchProductsWithSortAndFilter(categoryId, sortingParam, filterText, limit, offset))
     }
 
     function handleSortChange(e) {
-        switch (e.target.value) {
-            case ("priceAscending"):
-                return setSortingParam("price:asc")
-            case ("priceDescending"):
-                return setSortingParam("price:desc")
-            case ("ratingAscending"):
-                return setSortingParam("rating:asc")
-            case ("ratingDescending"):
-                return setSortingParam("rating:desc")
-        }
+        setSortingParam(sortMap[e.target.value] || "")
+        
     }
 
-    function handleFilterTextChange(e){
+    function handleFilterTextChange(e) {
         setFilterText(e.target.value)
     }
 
-    const [currentPage, setCurrentPage] = useState(1)
-    const itemsPerPage = 4
 
-    const startIndex = (currentPage - 1) * itemsPerPage
-    const currentProducts = products.slice(startIndex, startIndex + itemsPerPage)
 
-    const totalPages = Math.ceil(products.length / itemsPerPage)
 
 
     return (
@@ -74,7 +68,7 @@ export default function ShopPage() {
             <Categories></Categories>
 
             <div className='flex flex-col items-center justify-center gap-10 xl1440:flex-row xl1440:justify-between w-full'>
-                <span className='font-bold text-[14px] text-secondText'> Showing all {products.length} results </span>
+                <span className='font-bold text-[14px] text-secondText'> Showing all {total} results </span>
 
                 <div className='flex items-center gap-5'>
                     <span className='font-bold text-[14px] text-secondText'> Views: </span>
@@ -96,7 +90,7 @@ export default function ShopPage() {
                         </select>
                     </div>
                     <label className=''>
-                        <input type="text" placeholder='Filter...' onChange={handleFilterTextChange} />
+                        <input type="text" placeholder='Filter...' onChange={handleFilterTextChange} value={filterText} />
                     </label>
                     <button className='btn-primary' onClick={handleFilterSubmit}> Filter </button>
                 </form>
@@ -104,9 +98,9 @@ export default function ShopPage() {
             </div>
 
             <div className="flex flex-col gap-20 xl1440:flex-row xl1440:justify-between xl1440:flex-wrap xl1440:gap-5 xl1440:w-full">
-                {productLoading && <Spinner></Spinner>}
-                {currentProducts.map((product, index) =>
-                    index >= (products.length % 4) * 4 ? "" :
+                {productsLoading ? <Spinner></Spinner> :
+                    productList.map((product, index) =>
+
                         <div className="w-[20%]" key={index}>
                             <Link to={`/product/${product.id}`}>
                                 <Product
@@ -121,10 +115,11 @@ export default function ShopPage() {
                                 </Product>
                             </Link>
                         </div>
-                )}
+                    )}
+
             </div>
 
-            <Pagination length={products.length} itemsPerPage={itemsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} ></Pagination>
+            <Pagination length={total} itemsPerPage={limit} setCurrentPage={setCurrentPage} currentPage={currentPage} ></Pagination>
 
             <Clients></Clients>
 

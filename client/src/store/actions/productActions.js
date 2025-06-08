@@ -14,93 +14,62 @@ export const productActions = {
 
 export function creatorActionCategories(newCategories){
     return({
-        type: clientActions.setCategories,
+        type: productActions.setCategories,
         payload: newCategories,
     })
 }
 
 export function creatorActionProductList(newProductList){
     return({
-        type: clientActions.setProductList,
+        type: productActions.setProductList,
         payload: newProductList,
     })
 }
 
 export function creatorActionTotal(newTotal){
     return({
-        type: clientActions.setTotal,
+        type: productActions.setTotal,
         payload: newTotal,
     })
 }
 
 export function creatorActionFetchState(newFetchState){
     return({
-        type: clientActions.setFetchState,
+        type: productActions.setFetchState,
         payload: newFetchState,
     })
 }
 
 export function creatorActionLimit(newLimit){
     return({
-        type: clientActions.setLimit,
+        type: productActions.setLimit,
         payload: newLimit,
     })
 }
 
 export function creatorActionOffset(newOffset){
     return({
-        type: clientActions.setOffset,
+        type: productActions.setOffset,
         payload: newOffset,
     })
 }
 
 export function creatorActionFilter(newFilter){
     return({
-        type: clientActions.setFilter,
+        type: productActions.setFilter,
         payload: newFilter,
     })
 }
 
 
-export function fetchProducts(){
-    return async (dispatch, getState) => {
-        dispatch({type: productActions.fetchProductsStarted})
-        
-        try{
-            const res = await axiosInstance.get("products")
-            dispatch({type: productActions.setProductList, payload: res.data.products})
-            dispatch({type: productActions.setTotal, payload: res.data.total})
-        }
-        catch(err){
-            console.error("Failed to fetch products",err)
-            dispatch({type: productActions.fetchProductsFailed, payload: err.message})
-        }
-    }
-}
 
 
-export function fetchProductsOfCategories(categoryId){
+export function fetchProductsWithSortAndFilter(categoryId,sortingParam, filterText, limit, offset){
     return async (dispatch, getState) => {
         dispatch({type: productActions.fetchProductsStarted})
-        
-        try{
-            const res = await axiosInstance.get(`products?category=${categoryId}`)
-            dispatch({type: productActions.setProductList, payload: res.data.products})
-            dispatch({type: productActions.setTotal, payload: res.data.total})
-        }
-        catch(err){
-            console.error("Failed to fetch products",err)
-            dispatch({type: productActions.fetchProductsFailed, payload: err.message})
-        }
-    }
-}
 
-export function fetchProductsWithSortAndFilter(categoryId,sortingParam, filterText){
-    return async (dispatch, getState) => {
-        dispatch({type: productActions.fetchProductsStarted})
-        
         try{
-            const res = await axiosInstance.get(`products?category=${categoryId}&sort=${sortingParam}&filter=${filterText}`)
+            const res = await axiosInstance.get(`products?category=${categoryId}&sort=${sortingParam}&filter=${filterText}&limit=${limit}&offset=${offset}`)
 
             dispatch({type: productActions.setProductList, payload: res.data.products})
             dispatch({type: productActions.setTotal, payload: res.data.total})
