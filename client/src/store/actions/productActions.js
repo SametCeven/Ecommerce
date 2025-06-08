@@ -77,3 +77,37 @@ export function fetchProducts(){
         }
     }
 }
+
+
+export function fetchProductsOfCategories(categoryId){
+    return async (dispatch, getState) => {
+        dispatch({type: productActions.fetchProductsStarted})
+        
+        try{
+            const res = await axiosInstance.get(`products?category=${categoryId}`)
+            dispatch({type: productActions.setProductList, payload: res.data.products})
+            dispatch({type: productActions.setTotal, payload: res.data.total})
+        }
+        catch(err){
+            console.error("Failed to fetch products",err)
+            dispatch({type: productActions.fetchProductsFailed, payload: err.message})
+        }
+    }
+}
+
+export function fetchProductsWithSortAndFilter(categoryId,sortingParam, filterText){
+    return async (dispatch, getState) => {
+        dispatch({type: productActions.fetchProductsStarted})
+        console.log(`products?category=${categoryId}&sort=${sortingParam}&filter=${filterText}`)
+        try{
+            const res = await axiosInstance.get(`products?category=${categoryId}&sort=${sortingParam}&filter=${filterText}`)
+
+            dispatch({type: productActions.setProductList, payload: res.data.products})
+            dispatch({type: productActions.setTotal, payload: res.data.total})
+        }
+        catch(err){
+            console.error("Failed to fetch products",err)
+            dispatch({type: productActions.fetchProductsFailed, payload: err.message})
+        }
+    }
+}
