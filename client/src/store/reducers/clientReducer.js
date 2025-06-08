@@ -9,6 +9,7 @@ const clientIinital = {
     language: "",
     loginLoading: false,
     loginError: null,
+    rememberMe: false,
 }
 
 export function clientReducer(state = clientIinital, action){

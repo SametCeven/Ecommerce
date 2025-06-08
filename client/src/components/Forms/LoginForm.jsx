@@ -39,7 +39,6 @@ export default function LoginForm() {
     const userLoginError = useSelector(store => store.client.loginError)
     const [token, setToken] = useLocalStorage("USER_TOKEN", "")
     const [rememberMe, setRememberMe] = useState(false)
-    
 
     const {
         register,
@@ -71,7 +70,9 @@ export default function LoginForm() {
         setToken("") 
     }
 
-
+    function handleRememberMe(){
+        setRememberMe(!rememberMe)
+    }
 
 
     
@@ -119,7 +120,7 @@ export default function LoginForm() {
                     className="" 
                     type="checkbox" 
                     value={rememberMe} 
-                    onClick={()=> setRememberMe(!rememberMe)} />
+                    onClick={handleRememberMe} />
                 Remember Me
             </label>
 

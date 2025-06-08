@@ -8,9 +8,23 @@ import TeamPage from "./pages/TeamPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { verify } from "./store/actions/clientActions";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 export default function App() {
 
+  const dispatch = useDispatch()
+  const [token, setToken] = useLocalStorage("USER_TOKEN", "")
+  useEffect(()=>{
+    if(token){
+      dispatch(verify(token))
+    }
+  },[])
+
+  const user = useSelector(store => store.client.user)
+  console.log(user)
 
   return (
     <PageContent>

@@ -7,6 +7,9 @@ export const clientActions = {
     setLanguage: "SET_LANGUAGE",
     loginUserStarted: "LOGIN_USER_STARTED",
     loginUserFailed: "LOGIN_USER_FAILED",
+    verifyUserStarted: "VERIFY_USER_STARTED",
+    verifyUserFailed: "VERIFY_USER_FAILED",
+    setRememberMe: "SET_REMEMBER_ME"
 }
 
 export function creatorActionUser(newUser) {
@@ -52,5 +55,25 @@ export function login(creds){
             throw err
         }
 
+    }
+}
+
+
+export function verify(token){
+    return async (dispatch, getState) => {
+        dispatch({type: clientActions.verifyUserStarted})
+
+        try{
+            const res = await axiosInstance.get("/verify", {headers: {Authorization: token}})
+            dispatch({type: clientActions.setUser, payload: res.data})
+            localStorage.setItem("USER_TOKEN",token)
+            return res.data
+        }
+        catch(err){
+            console.error("Failed to verify",err)
+            dispatch({type: clientActions.verifyUserFailed, payload: err.message})
+            localStorage.setItem("USER_TOKEN","")
+            throw err
+        }
     }
 }
