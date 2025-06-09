@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { verify } from "./store/actions/clientActions";
 import useLocalStorage from "./hooks/useLocalStorage";
+import ShoppingCartPage from "./pages/ShoppingCartPage";
 
 export default function App() {
 
@@ -38,6 +39,7 @@ export default function App() {
         <Route path="/about" component={AboutUsPage} />
         <Route path="/signup" component={SignupPage} />
         <Route path="/login" component={LoginPage} />
+        <Route path="/shoppingCart" component={ShoppingCartPage} />
       </Switch>
     </PageContent>
   )

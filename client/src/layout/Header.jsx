@@ -101,29 +101,26 @@ export default function Header() {
 
                 <div className='relative group'>
 
-                    <div className='flex items-center gap-1 hover:cursor-pointer'>
+                    <Link
+                        to="/shoppingCart"
+                        className='flex items-center gap-1 hover:cursor-pointer'>
                         <ShoppingCart size={`${showNavbarXl ? 16 : 24}`} />
-                        {showNavbarXl ? <span className='text-[12px]'> {cartCount} </span> : ""}
-                    </div>
+                        {showNavbarXl ? <span className='text-[12px] w-5 text-center'> {cartCount} </span> : ""}
+                    </Link>
 
                     <div className='absolute top-full left-0 hidden xl1440:group-hover:flex z-50'>
                         <div className='flex flex-col gap-5 bg-lightBg w-60 px-5 py-5 rounded-md'>
-                            <span> My Cart ({cartCount} Products) </span>
+                            <Link to="/shoppingCart"> My Cart ({cartCount} Products) </Link>
                             <div className='flex flex-col gap-5'>
                                 {cart.map((item, index) =>
-                                    <Link
-                                        className="block"
-                                        key={index}
-                                        to={``}>
-                                        <div className='flex items-center gap-5 border-b border-secondText px-3 py-3'>
-                                            <img className='w-20 h-15 object-cover' src={item.product.images[0].url} alt="" />
-                                            <div className='flex flex-col text-[12px] text-secondText'>
-                                                <h6> {item.product.name} </h6>
-                                                <span> Quantity : {item.count} </span>
-                                                <span> $ {(Math.round(item.product.price * 100) / 100).toFixed(2)} </span>
-                                            </div>
+                                    <div className='flex items-center gap-5 border-b border-secondText px-3 py-3' key={index}>
+                                        <img className='w-20 h-15 object-cover' src={item.product.images[0].url} alt="" />
+                                        <div className='flex flex-col text-[12px] text-secondText'>
+                                            <h6> {item.product.name} </h6>
+                                            <span> Quantity : {item.count} </span>
+                                            <span> $ {(Math.round(item.product.price * 100) / 100).toFixed(2)} </span>
                                         </div>
-                                    </Link>
+                                    </div>
                                 )}
                             </div>
                         </div>

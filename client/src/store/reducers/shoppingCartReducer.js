@@ -32,13 +32,34 @@ export function shoppingCartReducer(state = shoppingCartInitial, action) {
         case (shoppingCartActions.removeFromCart):
             const existingItemIndex2 = state.cart.findIndex(item => item.product.id === action.payload.id)
 
-            if(existingItemIndex2 !== -1){
-                const updatedCart2 = state.cart.map((item,index)=>{
-                    if(index === existingItemIndex2 && item.count>1) return {...item, count: item.count-1}
+            if (existingItemIndex2 !== -1) {
+                const updatedCart2 = state.cart.map((item, index) => {
+                    if (index === existingItemIndex2 && item.count > 1) return { ...item, count: item.count - 1 }
                     return item
                 })
-                return {...state, cart:updatedCart2}
+                return { ...state, cart: updatedCart2 }
             }
+            return state
+
+        case (shoppingCartActions.deleteFromCart):
+            const updatedCart3 = state.cart.filter((item) => item.product.id !== action.payload.id)
+            return { ...state, cart: updatedCart3 }
+
+
+        case (shoppingCartActions.checkCart):
+            const existingItemIndex3 = state.cart.findIndex(item => item.product.id === action.payload.id)
+
+            if (existingItemIndex3 !== -1) {
+                const updatedCart3 = state.cart.map((item, index) => {
+                    if (index === existingItemIndex3) {
+                        return { ...item, checked: !item.checked }
+                    }
+                    return item
+                })
+                return { ...state, cart: updatedCart3 }
+            }
+            return state
+
 
         default:
             return state

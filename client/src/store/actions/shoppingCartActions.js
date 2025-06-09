@@ -4,6 +4,8 @@ export const shoppingCartActions = {
     setAddress: "SET_ADDRESS",
     addToCart: "ADD_TO_CART",
     removeFromCart: "REMOVE_FROM_CART",
+    deleteFromCart: "DELETE_FROM_CART",
+    checkCart: "CHECK_CART",
 }
 
 export function creatorActionCart(newCart){
@@ -37,6 +39,20 @@ export function addToCart(product){
 export function removeFromCart(product){
     return({
         type: shoppingCartActions.removeFromCart,
+        payload: product,
+    })
+}
+
+export function deleteFromCart(product){
+    return({
+        type: shoppingCartActions.deleteFromCart,
+        payload: product,
+    })
+}
+
+export function checkCart(product){
+    return({
+        type: shoppingCartActions.checkCart,
         payload: product,
     })
 }
