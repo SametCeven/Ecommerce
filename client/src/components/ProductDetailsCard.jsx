@@ -63,7 +63,7 @@ export default function ProductDetailsCard(props) {
                 <div className="border border-muted rounded-full p-2 bg-white">
                     <Heart size={20}></Heart>
                 </div>
-                <button className="border border-muted rounded-full p-2 bg-white hover:cursor-pointer" onClick={handleCart}>
+                <button className="border border-muted rounded-full p-2 bg-white hover:cursor-pointer active:bg-primary active:text-white transition-colors duration-100" onClick={handleCart}>
                     <ShoppingCart size={20}></ShoppingCart>
                 </button>
                 <div className="border border-muted rounded-full p-2 bg-white">

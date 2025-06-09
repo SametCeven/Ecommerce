@@ -80,7 +80,7 @@ p{
 }
 
 .btn-primary{
-  @apply bg-primary text-white px-10 py-5 border border-primary rounded-xs text-[14px] font-bold leading-[28px] tracking-[0.2px]
+  @apply bg-primary text-white px-5 py-5 border border-primary rounded-xs text-[14px] font-bold leading-[28px] tracking-[0.2px]
 }
 
 .btn-primary-small{
