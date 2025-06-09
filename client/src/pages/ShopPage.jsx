@@ -55,7 +55,7 @@ export default function ShopPage() {
 
 
     return (
-        <div className="flex flex-col items-center justify-center gap-20 xl1440:px-40">
+        <div className="flex flex-col items-center justify-center gap-20 xl1440:px-20">
             <div className='flex flex-col items-center gap-20 xl1440:flex-row justify-between w-full'>
                 <h3> Shop </h3>
                 <div className="flex gap-5">
