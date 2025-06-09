@@ -10,7 +10,7 @@ const initialFavCount = 0;
 
 export default function Header() {
 
-    const  { cart } = useSelector(store=>store.shoppingCart)
+    const { cart } = useSelector(store => store.shoppingCart)
     const [cartCount, setCartCount] = useState(initialCartCount)
     const [favCount, setFavCount] = useState(initialFavCount)
     const user = useSelector(store => store.client.user)
@@ -18,11 +18,11 @@ export default function Header() {
 
 
 
-    useEffect(()=>{
-        if(cart){
-            setCartCount(cart.reduce((sum,item)=> sum + item.count,0))
+    useEffect(() => {
+        if (cart) {
+            setCartCount(cart.reduce((sum, item) => sum + item.count, 0))
         }
-    },[cart])
+    }, [cart])
 
 
     const [showNavbarXl, setShowNavbarXl] = useState(window.innerWidth > 1440)
@@ -41,7 +41,7 @@ export default function Header() {
     const [avatarUrl, setAvatarUrl] = useState("")
 
     useEffect(() => {
-        if (!user.email){
+        if (!user.email) {
             setAvatarHash("")
             setAvatarUrl("")
         }
@@ -99,9 +99,36 @@ export default function Header() {
 
                 <Search size={`${showNavbarXl ? 16 : 24}`} />
 
-                <div className='flex items-center gap-1'>
-                    <ShoppingCart size={`${showNavbarXl ? 16 : 24}`} />
-                    {showNavbarXl ? <span className='text-[12px]'> {cartCount} </span> : ""}
+                <div className='relative group'>
+
+                    <div className='flex items-center gap-1 hover:cursor-pointer'>
+                        <ShoppingCart size={`${showNavbarXl ? 16 : 24}`} />
+                        {showNavbarXl ? <span className='text-[12px]'> {cartCount} </span> : ""}
+                    </div>
+
+                    <div className='absolute top-full left-0 hidden xl1440:group-hover:flex z-50'>
+                        <div className='flex flex-col gap-5 bg-lightBg w-60 px-5 py-5 rounded-md'>
+                            <span> My Cart ({cartCount} Products) </span>
+                            <div className='flex flex-col gap-5'>
+                                {cart.map((item, index) =>
+                                    <Link
+                                        className="block"
+                                        key={index}
+                                        to={``}>
+                                        <div className='flex items-center gap-5 border-b border-secondText px-3 py-3'>
+                                            <img className='w-20 h-15 object-cover' src={item.product.images[0].url} alt="" />
+                                            <div className='flex flex-col text-[12px] text-secondText'>
+                                                <h6> {item.product.name} </h6>
+                                                <span> Quantity : {item.count} </span>
+                                                <span> $ {(Math.round(item.product.price * 100) / 100).toFixed(2)} </span>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <Menu className='xl1440:hidden' size={`${showNavbarXl ? 16 : 24}`} />
