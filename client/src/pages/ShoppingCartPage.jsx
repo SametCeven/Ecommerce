@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { addToCart, checkCart, deleteFromCart, removeFromCart } from "../store/actions/shoppingCartActions"
 import { Trash2, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function ShoppingCartPage() {
 
@@ -11,6 +12,9 @@ export default function ShoppingCartPage() {
     const discountAmount = 50.00
     const [totalAmount, setTotalAmount] = useState(0)
     const [totalAmountFinal, setTotalAmountFinal] = useState(0)
+    const { user } = useSelector(store => store.client)
+
+
 
     useEffect(() => {
         setTotalAmount(cart.reduce((sum, item) => sum + item.count * item.product.price, 0))
@@ -84,7 +88,7 @@ export default function ShoppingCartPage() {
 
                     </div>
                 )}
-                
+
             </div>
 
             <div className="w-90 py-20">
@@ -109,10 +113,12 @@ export default function ShoppingCartPage() {
                         <span className="font-semibold text-primary"> ${(Math.round(totalAmountFinal * 100) / 100).toFixed(2)} </span>
                     </div>
 
-                    <button className="btn-primary mt-5 flex justify-center items-center gap-1 hover:cursor-pointer"> 
-                        Confirm Order 
-                        <ChevronRight></ChevronRight> 
-                    </button>
+                    <Link to={"/createOrder"} className="block w-full">
+                        <button className="btn-primary mt-5 flex justify-center items-center gap-1 hover:cursor-pointer w-full">
+                            Confirm Order
+                            <ChevronRight></ChevronRight>
+                        </button>
+                    </Link>
 
                 </div>
             </div>
