@@ -10,10 +10,20 @@ const initialFavCount = 0;
 
 export default function Header() {
 
+    const  { cart } = useSelector(store=>store.shoppingCart)
     const [cartCount, setCartCount] = useState(initialCartCount)
     const [favCount, setFavCount] = useState(initialFavCount)
-
     const user = useSelector(store => store.client.user)
+
+
+
+
+    useEffect(()=>{
+        if(cart){
+            setCartCount(cart.reduce((sum,item)=> sum + item.count,0))
+        }
+    },[cart])
+
 
     const [showNavbarXl, setShowNavbarXl] = useState(window.innerWidth > 1440)
 
@@ -55,6 +65,11 @@ export default function Header() {
                 //console.error(err)
             })
     }, [avatarHash])
+
+
+
+
+
 
     return (
         <header className=''>

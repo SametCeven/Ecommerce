@@ -1,8 +1,12 @@
 import { Star, Heart, ShoppingCart, Eye } from 'lucide-react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, removeFromCart } from '../store/actions/shoppingCartActions';
 
 export default function ProductDetailsCard(props) {
 
     const { selectedProduct } = props
+    const dispatch = useDispatch()
+    const { cart } = useSelector(store=>store.shoppingCart)
 
     let i = 1
     let stars = []
@@ -10,6 +14,12 @@ export default function ProductDetailsCard(props) {
         stars.push(i)
         i++
     }
+
+
+    function handleCart(e){
+        dispatch(addToCart(selectedProduct))
+    } 
+
 
     return (
         <div className="flex flex-col px-5 gap-5 w-full">
@@ -53,9 +63,9 @@ export default function ProductDetailsCard(props) {
                 <div className="border border-muted rounded-full p-2 bg-white">
                     <Heart size={20}></Heart>
                 </div>
-                <div className="border border-muted rounded-full p-2 bg-white">
+                <button className="border border-muted rounded-full p-2 bg-white hover:cursor-pointer" onClick={handleCart}>
                     <ShoppingCart size={20}></ShoppingCart>
-                </div>
+                </button>
                 <div className="border border-muted rounded-full p-2 bg-white">
                     <Eye size={20}></Eye>
                 </div>
