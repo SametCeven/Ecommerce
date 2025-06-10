@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { addToCart, checkCart, creatorActionTotalAmount, creatorActionTotalAmountFinal, deleteFromCart, removeFromCart } from "../store/actions/shoppingCartActions"
 import { Trash2 } from 'lucide-react';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import OrderSummary from "../components/OrderSummary";
 
 export default function ShoppingCartPage() {

@@ -5,11 +5,26 @@ export const clientActions = {
     setRoles: "SET_ROLES",
     setTheme: "SET_THEME",
     setLanguage: "SET_LANGUAGE",
+    
     loginUserStarted: "LOGIN_USER_STARTED",
     loginUserFailed: "LOGIN_USER_FAILED",
+    
     verifyUserStarted: "VERIFY_USER_STARTED",
     verifyUserFailed: "VERIFY_USER_FAILED",
-    setRememberMe: "SET_REMEMBER_ME"
+    setRememberMe: "SET_REMEMBER_ME",
+    
+    getAddressStarted: "GET_ADDRESS_STARTED",
+    getAddressFailed: "GET_ADDRESS_FAILED",
+    setAddressList: "SET_ADDRESS_LIST",
+    
+    addAddressStarted: "ADD_ADDRESS_STARTED",
+    addAddressFailed: "ADD_ADDRESS_FAILED",
+    addAddress: "ADD_ADDRESS",
+    
+    deleteAddressStarted: "DELETE_ADDRESS_STARTED",
+    deleteAddressFailed: "DELETE_ADDRESS_FAILED",
+    deleteAddress: "DELETE_ADDRESS",
+    
 }
 
 export function creatorActionUser(newUser) {
@@ -75,5 +90,76 @@ export function verify(token){
             localStorage.setItem("USER_TOKEN","")
             throw err
         }
+    }
+}
+
+
+export function getAddress(token){
+    return async (dispatch, getState) => {
+        dispatch({type: clientActions.getAddressStarted})
+
+        try{
+            const res = await axiosInstance.get("/user/address", {
+                headers: {
+                    Authorization: token,
+                }
+            })
+            dispatch({type: clientActions.setAddressList, payload: res.data})
+            return res.data
+        }
+        catch(err){
+            console.error("Failed to login",err)
+            dispatch({type: clientActions.getAddressFailed, payload: err.message})
+            throw err
+        }
+
+    }
+}
+
+
+export function addAddress(formData,token){
+    return async (dispatch, getState) => {
+        dispatch({type: clientActions.addAddressStarted})
+
+        try{
+            const res = await axiosInstance.post("/user/address", formData, {
+                headers: {
+                    Authorization: token,
+                }
+            })
+            dispatch({type: clientActions.addAddress, payload: res.data})
+            dispatch(getAddress(token))
+            return res.data
+        }
+        catch(err){
+            console.error("Failed to login",err)
+            dispatch({type: clientActions.addAddressFailed, payload: err.message})
+            throw err
+        }
+
+    }
+}
+
+
+export function deleteAddress(addressId,token){
+    return async (dispatch, getState) => {
+        dispatch({type: clientActions.deleteAddressStarted})
+
+        try{
+            const res = await axiosInstance.delete(`/user/address/${addressId}`, {
+                headers: {
+                    Authorization: token,
+                }
+            })
+            dispatch({type: clientActions.deleteAddress, payload: res.data})
+            dispatch(getAddress(token))
+            return res.data
+        }
+        catch(err){
+            console.error("Failed to login",err)
+            dispatch({type: clientActions.deleteAddressFailed, payload: err.message})
+            throw err
+        }
+
     }
 }
