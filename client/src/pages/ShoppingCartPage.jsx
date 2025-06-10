@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { addToCart, checkCart, deleteFromCart, removeFromCart } from "../store/actions/shoppingCartActions"
+import { addToCart, checkCart, creatorActionTotalAmount, creatorActionTotalAmountFinal, deleteFromCart, removeFromCart } from "../store/actions/shoppingCartActions"
 import { Trash2 } from 'lucide-react';
 import { useEffect, useState } from "react";
 import OrderSummary from "../components/OrderSummary";
@@ -7,18 +7,13 @@ import OrderSummary from "../components/OrderSummary";
 export default function ShoppingCartPage() {
 
     const dispatch = useDispatch()
-    const { cart } = useSelector(store => store.shoppingCart)
-    const deliveryAmount = 20.00
-    const discountAmount = 50.00
-    const [totalAmount, setTotalAmount] = useState(0)
-    const [totalAmountFinal, setTotalAmountFinal] = useState(0)
-
+    const { cart, deliveryAmount, discountAmount, totalAmount, totalAmountFinal } = useSelector(store => store.shoppingCart)
 
 
     useEffect(() => {
         const total = cart.reduce((sum, item) => sum + item.count * item.product.price, 0)
-        setTotalAmount(total)
-        setTotalAmountFinal(total + deliveryAmount - discountAmount)
+        dispatch(creatorActionTotalAmount(total))
+        dispatch(creatorActionTotalAmountFinal(total+deliveryAmount-discountAmount))
     }, [cart])
 
 
