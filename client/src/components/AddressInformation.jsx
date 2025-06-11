@@ -11,11 +11,12 @@ import { creatorActionAddress } from "../store/actions/shoppingCartActions";
 
 export default function AddressInformation(props) {
 
-    const { addressSelected ,setAddressSelected, addressLoading, addressList, optionsMap, addressCart, user } = props
+    const { addressLoading, addressList, optionsMap, addressCart, user } = props
 
     const dispatch = useDispatch()
     const [edit, setEdit] = useState(false)
     const [editAddressId, setEditAddressId] = useState()
+    const [addAddressSelected, setAddAddressSelected] = useState(false)
 
     function handleAddressSelection(e) {
         dispatch(creatorActionAddress(e.target.value))
@@ -26,13 +27,13 @@ export default function AddressInformation(props) {
         <div className="flex flex-col gap-20">
             <button
                 className="flex justify-center gap-3 border border-secondText rounded-md p-5 bg-lightGray2 hover:cursor-pointer w-full"
-                onClick={() => setAddressSelected(true)}>
+                onClick={() => setAddAddressSelected(true)}>
                 Add Address
                 <Plus></Plus>
             </button>
 
-            {addressSelected &&
-                <AddressForm setAddressSelected={setAddressSelected}></AddressForm>
+            {addAddressSelected &&
+                <AddressForm setAddAddressSelected={setAddAddressSelected}></AddressForm>
             }
 
             {addressLoading ? <Spinner></Spinner> : (

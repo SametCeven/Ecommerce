@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react"
 import OrderSummary from "../components/OrderSummary"
 import { useDispatch, useSelector } from "react-redux"
-import { deleteAddress, getAddress } from "../store/actions/clientActions"
-import Spinner from "../components/Spinner"
-import { creatorActionAddress } from "../store/actions/shoppingCartActions"
-
-
-import AddressEditForm from "../components/Forms/AddressEditForm"
+import { getAddress, getCard } from "../store/actions/clientActions"
 import AddressInformation from "../components/AddressInformation"
+import PaymentInformation from "../components/PaymentInformation"
 
 const optionsMap = {
     address: "address",
@@ -20,22 +16,17 @@ export default function CreateOrderPage() {
 
     const dispatch = useDispatch()
     const [option, setOption] = useState(optionsMap.address)
-    const [addressSelected, setAddressSelected] = useState(false)
-    const { deliveryAmount, discountAmount, totalAmount, totalAmountFinal, address: addressCart } = useSelector(store => store.shoppingCart)
-    const { user, addressList, addressLoading } = useSelector(store => store.client)
-
-
-
-
+    
+    const { deliveryAmount, discountAmount, totalAmount, totalAmountFinal, address: addressCart, payment: paymentCart } = useSelector(store => store.shoppingCart)
+    const { user, addressList, addressLoading, creditCards, cardLoading } = useSelector(store => store.client)
 
     function handleOption(e) {
         setOption(e.target.value)
     }
 
-    
-
     useEffect(() => {
         dispatch(getAddress(user.token))
+        dispatch(getCard(user.token))
     }, [])
 
 
@@ -64,24 +55,23 @@ export default function CreateOrderPage() {
 
             {option === optionsMap.address &&
                 <AddressInformation
-                    addressSelected={addressSelected}
-                    setAddressSelected={setAddressSelected}
                     addressLoading={addressLoading}
                     addressList={addressList}
                     optionsMap={optionsMap}
                     addressCart={addressCart}
                     user={user}
-
                 ></AddressInformation>
             }
 
 
             {option === optionsMap.payment &&
-
-                <div>
-                    payment
-                </div>
-
+                <PaymentInformation
+                    cardLoading={cardLoading}
+                    creditCards={creditCards}
+                    optionsMap={optionsMap}
+                    paymentCart={paymentCart}
+                    user={user}
+                ></PaymentInformation>
             }
 
 

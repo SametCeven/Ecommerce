@@ -28,7 +28,22 @@ export const clientActions = {
     editAddressStarted: "EDIT_ADDRESS_STARTED",
     editAddressFailed: "EDIT_ADDRESS_FAILED",
     editAddress: "EDIT_ADDRESS",
+
+    getCardStarted: "GET_CARD_STARTED",
+    getCardFailed: "GET_CARD_FAILED",
+    setCardList: "SET_CARD_LIST",
+
+    addCardStarted: "ADD_CARD_STARTED",
+    addCardFailed: "ADD_CARD_FAILED",
+    addCard: "ADD_CARD",
     
+    deleteCardStarted: "DELETE_CARD_STARTED",
+    deleteCardFailed: "DELETE_CARD_FAILED",
+    deleteCard: "DELETE_CARD",
+
+    editCardStarted: "EDIT_CARD_STARTED",
+    editCardFailed: "EDIT_CARD_FAILED",
+    editCard: "EDIT_CARD",
 }
 
 export function creatorActionUser(newUser) {
@@ -187,6 +202,101 @@ export function editAddress(editedAddress,token){
         catch(err){
             console.error("Failed to edit address",err)
             dispatch({type: clientActions.editAddressFailed, payload: err.message})
+            throw err
+        }
+
+    }
+}
+
+
+export function getCard(token){
+    return async (dispatch, getState) => {
+        dispatch({type: clientActions.getCardStarted})
+
+        try{
+            const res = await axiosInstance.get("/user/card", {
+                headers: {
+                    Authorization: token,
+                }
+            })
+            dispatch({type: clientActions.setCardList, payload: res.data})
+            return res.data
+        }
+        catch(err){
+            console.error("Failed to get card",err)
+            dispatch({type: clientActions.getCardFailed, payload: err.message})
+            throw err
+        }
+
+    }
+}
+
+
+export function addCard(formData,token){
+    return async (dispatch, getState) => {
+        dispatch({type: clientActions.addCardStarted})
+
+        try{
+            const res = await axiosInstance.post("/user/card", formData, {
+                headers: {
+                    Authorization: token,
+                }
+            })
+            dispatch({type: clientActions.addCard, payload: res.data})
+            dispatch(getCard(token))
+            return res.data
+        }
+        catch(err){
+            console.error("Failed to add card",err)
+            dispatch({type: clientActions.addCardFailed, payload: err.message})
+            throw err
+        }
+
+    }
+}
+
+
+export function deleteCard(cardId,token){
+    return async (dispatch, getState) => {
+        dispatch({type: clientActions.deleteCardStarted})
+
+        try{
+            const res = await axiosInstance.delete(`/user/card/${cardId}`, {
+                headers: {
+                    Authorization: token,
+                }
+            })
+            dispatch({type: clientActions.deleteCard, payload: res.data})
+            dispatch(getCard(token))
+            return res.data
+        }
+        catch(err){
+            console.error("Failed to delete card",err)
+            dispatch({type: clientActions.deleteCardFailed, payload: err.message})
+            throw err
+        }
+
+    }
+}
+
+
+export function editCard(editedCard,token){
+    return async (dispatch, getState) => {
+        dispatch({type: clientActions.editCardStarted})
+
+        try{
+            const res = await axiosInstance.put(`/user/card`, editedCard, {
+                headers: {
+                    Authorization: token,
+                }
+            })
+            dispatch({type: clientActions.editCard, payload: res.data})
+            dispatch(getCard(token))
+            return res.data
+        }
+        catch(err){
+            console.error("Failed to edit card",err)
+            dispatch({type: clientActions.editCardFailed, payload: err.message})
             throw err
         }
 
