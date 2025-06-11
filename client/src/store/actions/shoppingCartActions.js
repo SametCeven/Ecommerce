@@ -6,6 +6,10 @@ export const shoppingCartActions = {
     removeFromCart: "REMOVE_FROM_CART",
     deleteFromCart: "DELETE_FROM_CART",
     checkCart: "CHECK_CART",
+    setDeliveryAmount: "SET_DELIVERY_AMOUNT",
+    setDiscountAmount: "SET_DISCOUNT_AMOUNT",
+    setTotalAmount: "SET_TOTAL_AMOUNT",
+    setTotalAmountFinal : "SET_TOTAL_AMOUNT_FINAL",
 }
 
 export function creatorActionCart(newCart){
@@ -54,5 +58,33 @@ export function checkCart(product){
     return({
         type: shoppingCartActions.checkCart,
         payload: product,
+    })
+}
+
+export function creatorActionDeliveryAmount(newDeliveryAmount){
+    return({
+        type: shoppingCartActions.setDeliveryAmount,
+        payload: newDeliveryAmount,
+    })
+}
+
+export function creatorActionDiscountAmount(newDiscountAmount){
+    return({
+        type: shoppingCartActions.setDiscountAmount,
+        payload: newDiscountAmount,
+    })
+}
+
+export function creatorActionTotalAmount(newTotalAmount){
+    return({
+        type: shoppingCartActions.setTotalAmount,
+        payload: newTotalAmount,
+    })
+}
+
+export function creatorActionTotalAmountFinal(newTotalAmountFinal){
+    return({
+        type: shoppingCartActions.setTotalAmountFinal,
+        payload: newTotalAmountFinal,
     })
 }

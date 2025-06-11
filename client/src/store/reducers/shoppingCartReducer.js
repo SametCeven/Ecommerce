@@ -4,6 +4,10 @@ const shoppingCartInitial = {
     cart: [],
     payment: {},
     address: {},
+    deliveryAmount: 20.00,
+    discountAmount: 50.00,
+    totalAmount: 0,
+    totolAmountFinal: 0,
 }
 
 export function shoppingCartReducer(state = shoppingCartInitial, action) {
@@ -59,6 +63,16 @@ export function shoppingCartReducer(state = shoppingCartInitial, action) {
                 return { ...state, cart: updatedCart3 }
             }
             return state
+
+
+        case (shoppingCartActions.setDeliveryAmount):
+            return {...state, deliveryAmount: action.payload}
+        case (shoppingCartActions.setDiscountAmount):
+            return {...state, discountAmount: action.payload}
+        case (shoppingCartActions.setTotalAmount):
+            return {...state, totalAmount: action.payload}
+        case (shoppingCartActions.setTotalAmountFinal):
+            return {...state, totalAmountFinal: action.payload}
 
 
         default:

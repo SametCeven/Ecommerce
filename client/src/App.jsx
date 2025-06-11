@@ -13,16 +13,18 @@ import { useEffect } from "react";
 import { verify } from "./store/actions/clientActions";
 import useLocalStorage from "./hooks/useLocalStorage";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
+import CreateOrderPage from "./pages/CreateOrderPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
 
   const dispatch = useDispatch()
   const [token, setToken] = useLocalStorage("USER_TOKEN", "")
-  useEffect(()=>{
-    if(token){
+  useEffect(() => {
+    if (token) {
       dispatch(verify(token))
     }
-  },[])
+  }, [])
 
 
 
@@ -40,6 +42,7 @@ export default function App() {
         <Route path="/signup" component={SignupPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/shoppingCart" component={ShoppingCartPage} />
+        <ProtectedRoute path="/createOrder" component={CreateOrderPage} />
       </Switch>
     </PageContent>
   )
