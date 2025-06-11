@@ -18,7 +18,7 @@ const initialFormData = {
 
 export default function AddressForm(props) {
 
-    const { setAddressSelected } = props
+    const { setAddAddressSelected } = props
     const dispatch = useDispatch()
     const { user } = useSelector(store => store.client)
 
@@ -36,7 +36,7 @@ export default function AddressForm(props) {
 
     async function formSubmit(formData) {
         dispatch(addAddress(formData, user.token))
-        setAddressSelected(false)
+        setAddAddressSelected(false)
     }
 
 
@@ -129,7 +129,7 @@ export default function AddressForm(props) {
 
             <button
                 className="btn-primary-reverse hover:cursor-pointer"
-                onClick={()=> setAddressSelected(false)}>
+                onClick={()=> setAddAddressSelected(false)}>
                 Close
             </button>
 
