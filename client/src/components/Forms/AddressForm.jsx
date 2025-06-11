@@ -35,7 +35,7 @@ export default function AddressForm(props) {
 
 
     async function formSubmit(formData) {
-        dispatch(addAddress(formData,user.token))
+        dispatch(addAddress(formData, user.token))
         setAddressSelected(false)
     }
 
@@ -126,6 +126,12 @@ export default function AddressForm(props) {
             {isValid &&
                 <button className="btn-primary hover:cursor-pointer"> Submit Address </button>
             }
+
+            <button
+                className="btn-primary-reverse hover:cursor-pointer"
+                onClick={()=> setAddressSelected(false)}>
+                Close
+            </button>
 
         </form>
     )

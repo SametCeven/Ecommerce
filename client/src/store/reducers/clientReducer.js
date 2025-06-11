@@ -16,6 +16,8 @@ const clientIinital = {
     addAdressError: null,
     deleteAddressLoading: false,
     deleteAddressError: null,
+    editAddressLoading: false,
+    editAddressError: null,
 }
 
 export function clientReducer(state = clientIinital, action) {
@@ -60,7 +62,15 @@ export function clientReducer(state = clientIinital, action) {
             const updatedAddressList = state.addressList.filter((item) => item.id !== action.payload)
             return { ...state, addressList: updatedAddressList }
 
-
+        
+        case (clientActions.editAddressStarted):
+            return { ...state, editAddressLoading: true, editAddressError: null }
+        case (clientActions.editAddressFailed):
+            return { ...state, editAddressLoading: false, editAddressError: action.payload }
+        case (clientActions.editAddress):
+            const updatedAddressList2 = state.addressList.filter((item) => item.id !== action.payload.id)
+            return { ...state, addressList: [updatedAddressList2, action.payload] }
+        
 
 
         default:

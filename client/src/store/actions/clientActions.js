@@ -24,6 +24,10 @@ export const clientActions = {
     deleteAddressStarted: "DELETE_ADDRESS_STARTED",
     deleteAddressFailed: "DELETE_ADDRESS_FAILED",
     deleteAddress: "DELETE_ADDRESS",
+
+    editAddressStarted: "EDIT_ADDRESS_STARTED",
+    editAddressFailed: "EDIT_ADDRESS_FAILED",
+    editAddress: "EDIT_ADDRESS",
     
 }
 
@@ -108,7 +112,7 @@ export function getAddress(token){
             return res.data
         }
         catch(err){
-            console.error("Failed to login",err)
+            console.error("Failed to get address",err)
             dispatch({type: clientActions.getAddressFailed, payload: err.message})
             throw err
         }
@@ -132,7 +136,7 @@ export function addAddress(formData,token){
             return res.data
         }
         catch(err){
-            console.error("Failed to login",err)
+            console.error("Failed to add address",err)
             dispatch({type: clientActions.addAddressFailed, payload: err.message})
             throw err
         }
@@ -156,8 +160,33 @@ export function deleteAddress(addressId,token){
             return res.data
         }
         catch(err){
-            console.error("Failed to login",err)
+            console.error("Failed to delete address",err)
             dispatch({type: clientActions.deleteAddressFailed, payload: err.message})
+            throw err
+        }
+
+    }
+}
+
+
+export function editAddress(editedAddress,token){
+    return async (dispatch, getState) => {
+        dispatch({type: clientActions.editAddressStarted})
+
+        try{
+            const res = await axiosInstance.put(`/user/address`, editedAddress,  {
+                headers: {
+                    Authorization: token,
+                }
+            })
+            console.log(res.data)
+            dispatch({type: clientActions.editAddress, payload: res.data})
+            dispatch(getAddress(token))
+            return res.data
+        }
+        catch(err){
+            console.error("Failed to edit address",err)
+            dispatch({type: clientActions.editAddressFailed, payload: err.message})
             throw err
         }
 
