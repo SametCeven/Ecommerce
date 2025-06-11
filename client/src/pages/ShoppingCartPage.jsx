@@ -91,6 +91,7 @@ export default function ShoppingCartPage() {
                 deliveryAmount = {deliveryAmount}
                 discountAmount = {discountAmount}
                 totalAmountFinal = {totalAmountFinal}
+                link = {"/createOrder"}
             ></OrderSummary>
 
         </div>

@@ -3,7 +3,7 @@ import { ChevronRight } from 'lucide-react';
 
 export default function OrderSummary(props) {
 
-    const { totalAmount, deliveryAmount, discountAmount, totalAmountFinal } = props
+    const { totalAmount, deliveryAmount, discountAmount, totalAmountFinal, link } = props
 
     return (
         <div className="w-90 py-20">
@@ -28,7 +28,7 @@ export default function OrderSummary(props) {
                     <span className="font-semibold text-primary"> ${(Math.round(totalAmountFinal * 100) / 100).toFixed(2)} </span>
                 </div>
 
-                <Link to={"/createOrder"} className="block w-full">
+                <Link to={link} className="block w-full">
                     <button className="btn-primary mt-5 flex justify-center items-center gap-1 hover:cursor-pointer w-full">
                         Confirm Order
                         <ChevronRight></ChevronRight>
