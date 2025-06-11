@@ -1,10 +1,10 @@
-import { Form, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import FormInput from "../FromComponents/FormInput"
 import { useDispatch, useSelector } from "react-redux"
 import { creatorActionUser, login } from "../../store/actions/clientActions"
 import Spinner from "../Spinner"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import { ToastContainer, toast } from "react-toastify"
+import { toast } from "react-toastify"
 import { useState } from "react"
 import useLocalStorage from "../../hooks/useLocalStorage"
 
@@ -87,8 +87,6 @@ export default function LoginForm() {
 
     return (
         <form className="flex flex-col gap-10" onSubmit={handleSubmit(formSubmit)}>
-
-            <ToastContainer></ToastContainer>
 
             <FormInput
                 type="email"

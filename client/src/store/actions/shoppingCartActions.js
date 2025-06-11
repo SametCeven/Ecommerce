@@ -1,3 +1,5 @@
+import axiosInstance from "../../services/api"
+
 export const shoppingCartActions = {
     setCart: "SET_CART",
     setPayment: "SET_PAYMENT",
@@ -10,6 +12,9 @@ export const shoppingCartActions = {
     setDiscountAmount: "SET_DISCOUNT_AMOUNT",
     setTotalAmount: "SET_TOTAL_AMOUNT",
     setTotalAmountFinal : "SET_TOTAL_AMOUNT_FINAL",
+    createOrder: "CREATE_ORDER",
+    createOrderStarted: "CREATE_ORDER_STARTED",
+    createOrderFailed: "CREATE_ORDER_FAILED",
 }
 
 export function creatorActionCart(newCart){
@@ -87,4 +92,26 @@ export function creatorActionTotalAmountFinal(newTotalAmountFinal){
         type: shoppingCartActions.setTotalAmountFinal,
         payload: newTotalAmountFinal,
     })
+}
+
+export function createOrder(order,token){
+    return async (dispatch, getState) => {
+        dispatch({type: shoppingCartActions.createOrderStarted})
+
+        try{
+            const res = await axiosInstance.post(`/order`, order, {
+                headers: {
+                    Authorization: token,
+                }
+            })
+            dispatch({type: shoppingCartActions.createOrder, payload: res.data})
+            return res.data
+        }
+        catch(err){
+            console.error("Failed to create order",err)
+            dispatch({type: shoppingCartActions.createOrderFailed, payload: err.message})
+            throw err
+        }
+
+    }
 }

@@ -1,3 +1,4 @@
+import { ToastContainer } from "react-toastify";
 import Footer from "./Footer";
 import Header from "./Header";
 import Navbar from "./Navbar";
@@ -7,6 +8,7 @@ export default function PageContent({ children }) {
 
     return (
         <div className="flex flex-col gap-5 items-center">
+
             <div className="hidden xl1440:block w-full">
                 <NavbarDark></NavbarDark>
             </div>
@@ -31,6 +33,8 @@ export default function PageContent({ children }) {
             </main>
 
             <Footer></Footer>
+
+            <ToastContainer></ToastContainer>
         </div>
     )
 }
