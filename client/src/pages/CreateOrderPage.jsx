@@ -51,13 +51,13 @@ export default function CreateOrderPage() {
 
             <div className="flex justify-between items-center gap-5 font-bold text-text">
                 <button
-                    className="px-5 py-3 border rounded-md border-text hover:cursor-pointer hover:bg-primary hover:text-white"
+                    className={`px-5 py-3 border rounded-md border-text hover:cursor-pointer hover:bg-primary hover:text-white ${option === optionsMap.address ? "bg-primary text-white" : ""}`}
                     value={optionsMap.address}
                     onClick={handleOption}>
                     Address Information
                 </button>
                 <button
-                    className="px-5 py-3 border rounded-md border-text hover:cursor-pointer hover:bg-primary hover:text-white"
+                    className={`px-5 py-3 border rounded-md border-text hover:cursor-pointer hover:bg-primary hover:text-white ${option === optionsMap.payment ? "bg-primary text-white" : ""}`}
                     value={optionsMap.payment}
                     onClick={handleOption}>
                     Payment Information
