@@ -8,18 +8,19 @@ import TeamPage from "./pages/TeamPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { verify } from "./store/actions/clientActions";
 import useLocalStorage from "./hooks/useLocalStorage";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
 import CreateOrderPage from "./pages/CreateOrderPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
 
   const dispatch = useDispatch()
-  const [token, setToken] = useLocalStorage("USER_TOKEN", "")
+  const [token] = useLocalStorage("USER_TOKEN", "")
   useEffect(() => {
     if (token) {
       dispatch(verify(token))

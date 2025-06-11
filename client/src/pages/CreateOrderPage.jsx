@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { getAddress, getCard } from "../store/actions/clientActions"
 import AddressInformation from "../components/AddressInformation"
 import PaymentInformation from "../components/PaymentInformation"
+import { createOrder } from "../store/actions/shoppingCartActions"
+import { ToastContainer, toast } from "react-toastify"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 const optionsMap = {
     address: "address",
@@ -14,10 +17,11 @@ const optionsMap = {
 
 export default function CreateOrderPage() {
 
+    const history = useHistory()
     const dispatch = useDispatch()
     const [option, setOption] = useState(optionsMap.address)
 
-    const { deliveryAmount, discountAmount, totalAmount, totalAmountFinal, address: addressCart, payment: paymentCart } = useSelector(store => store.shoppingCart)
+    const { deliveryAmount, discountAmount, totalAmount, totalAmountFinal, address: addressCart, payment: paymentCart, cart } = useSelector(store => store.shoppingCart)
     const { user, addressList, addressLoading, creditCards, cardLoading } = useSelector(store => store.client)
 
     function handleOption(e) {
@@ -30,12 +34,54 @@ export default function CreateOrderPage() {
     }, [])
 
 
+    async function submitOrder(e) {
+        const orderDate = (new Date()).toISOString().slice(0, 19)
+        const selectedCard = creditCards.filter((card) => card.id === Number(paymentCart))[0]
+        const products = []
+        cart.map((item) => {
+            products.push({
+                product_id: item.product.id,
+                count: item.count,
+                detail: item.product.name,
+            })
+        })
+
+        const order = {
+            address_id: Number(addressCart),
+            order_date: orderDate,
+            card_no: selectedCard.card_no,
+            card_name: selectedCard.name_on_card,
+            card_expire_month: selectedCard.expire_month,
+            card_expire_year: selectedCard.expire_year,
+            card_ccv: "",
+            price: totalAmountFinal,
+            products: products,
+        }
+
+
+        try {
+            const data = await dispatch(createOrder(order, user.token))
+            toast.success("Order Received", {
+                autoClose: 1500,
+            })
+            setTimeout(()=>{
+                history.push("/")
+            },1800)
+        } catch (error) {
+            toast.error("Failed to Order ... ", {
+                autoClose: 1500,
+            })
+        }
+
+    }
 
 
 
 
     return (
-        <div className="flex flex-col gap-20 px-5 xl1440:flex-row">
+        <div className="flex flex-col gap-20 items-center xl1440:flex-row xl1440:items-baseline">
+
+            <ToastContainer></ToastContainer>
 
             <div className="flex  flex-col gap-20 px-5 xl1440:py-20">
 
@@ -84,6 +130,7 @@ export default function CreateOrderPage() {
                 discountAmount={discountAmount}
                 totalAmountFinal={totalAmountFinal}
                 link={"/"}
+                handleButton={submitOrder}
             ></OrderSummary>
 
 

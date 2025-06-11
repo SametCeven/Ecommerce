@@ -8,6 +8,8 @@ const shoppingCartInitial = {
     discountAmount: 50.00,
     totalAmount: 0,
     totolAmountFinal: 0,
+    orderLoading: false,
+    orderError: null,
 }
 
 export function shoppingCartReducer(state = shoppingCartInitial, action) {
@@ -66,13 +68,21 @@ export function shoppingCartReducer(state = shoppingCartInitial, action) {
 
 
         case (shoppingCartActions.setDeliveryAmount):
-            return {...state, deliveryAmount: action.payload}
+            return { ...state, deliveryAmount: action.payload }
         case (shoppingCartActions.setDiscountAmount):
-            return {...state, discountAmount: action.payload}
+            return { ...state, discountAmount: action.payload }
         case (shoppingCartActions.setTotalAmount):
-            return {...state, totalAmount: action.payload}
+            return { ...state, totalAmount: action.payload }
         case (shoppingCartActions.setTotalAmountFinal):
-            return {...state, totalAmountFinal: action.payload}
+            return { ...state, totalAmountFinal: action.payload }
+
+
+        case (shoppingCartActions.createOrderStarted):
+            return { ...state, orderLoading: true, orderError: null }
+        case (shoppingCartActions.createOrderFailed):
+            return { ...state, orderLoading: false, orderError: action.payload }
+        case (shoppingCartActions.createOrder):
+            return { ...state, orderLoading: false, cart: shoppingCartInitial.cart }
 
 
         default:

@@ -3,9 +3,11 @@ import { addToCart, checkCart, creatorActionTotalAmount, creatorActionTotalAmoun
 import { Trash2 } from 'lucide-react';
 import { useEffect } from "react";
 import OrderSummary from "../components/OrderSummary";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function ShoppingCartPage() {
 
+    const history = useHistory()
     const dispatch = useDispatch()
     const { cart, deliveryAmount, discountAmount, totalAmount, totalAmountFinal } = useSelector(store => store.shoppingCart)
 
@@ -91,7 +93,7 @@ export default function ShoppingCartPage() {
                 deliveryAmount = {deliveryAmount}
                 discountAmount = {discountAmount}
                 totalAmountFinal = {totalAmountFinal}
-                link = {"/createOrder"}
+                handleButton={()=> history.push("/createOrder")}
             ></OrderSummary>
 
         </div>
