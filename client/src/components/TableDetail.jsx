@@ -2,7 +2,6 @@ export default function TableDetail(props) {
 
     const { data } = props
 
-    console.log(data)
 
     return (
         <div className="flex flex-col gap-10 text-xs">
