@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import EditorsPick from "../components/EditorsPick";
 import BestsellerProducts from "../components/BestsellerProducts";
 import Carousel from "../components/Carousel";
+import Container from "../components/Container";
+import Blogs from "../components/Blogs";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsWithSortAndFilter } from "../store/actions/productActions";
 
@@ -48,7 +51,10 @@ export default function HomePage() {
                 data={productData}
                 >
             </Carousel>
+            <EditorsPick></EditorsPick>
             <BestsellerProducts></BestsellerProducts>
+            <Container></Container>
+            <Blogs></Blogs>
         </div>
     )
 }
