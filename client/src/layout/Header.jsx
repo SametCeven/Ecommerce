@@ -1,4 +1,4 @@
-import { User, Search, ShoppingCart, Menu, Heart } from 'lucide-react';
+import { User, Search, ShoppingCart, Menu, Heart, Folders } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
@@ -134,6 +134,10 @@ export default function Header() {
                     <Heart className='hidden xl1440:block' size={`${showNavbarXl ? 16 : 24}`}></Heart>
                     {showNavbarXl ? <span className='text-[12px]'> {favCount} </span> : ""}
                 </div>
+
+                <Link to="/previousOrders"> 
+                    <Folders size={`${showNavbarXl ? 16 : 24}`}></Folders>
+                </Link>
 
 
 

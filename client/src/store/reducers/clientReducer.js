@@ -11,6 +11,9 @@ const clientIinital = {
     loginError: null,
     rememberMe: false,
 
+    verifyLoading: false,
+    verifyError: null,
+
     addressLoading: false,
     addressError: null,
     addAddressLoading: false,

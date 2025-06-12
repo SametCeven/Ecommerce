@@ -9,8 +9,6 @@ export const clientActions = {
     loginUserStarted: "LOGIN_USER_STARTED",
     loginUserFailed: "LOGIN_USER_FAILED",
     
-    verifyUserStarted: "VERIFY_USER_STARTED",
-    verifyUserFailed: "VERIFY_USER_FAILED",
     setRememberMe: "SET_REMEMBER_ME",
     
     getAddressStarted: "GET_ADDRESS_STARTED",
@@ -95,7 +93,7 @@ export function login(creds){
 
 export function verify(token){
     return async (dispatch, getState) => {
-        dispatch({type: clientActions.verifyUserStarted})
+        dispatch({type: clientActions.loginUserStarted})
 
         try{
             const res = await axiosInstance.get("/verify", {headers: {Authorization: token}})
@@ -105,7 +103,7 @@ export function verify(token){
         }
         catch(err){
             console.error("Failed to verify",err)
-            dispatch({type: clientActions.verifyUserFailed, payload: err.message})
+            dispatch({type: clientActions.loginUserFailed, payload: err.message})
             localStorage.setItem("USER_TOKEN","")
             throw err
         }
