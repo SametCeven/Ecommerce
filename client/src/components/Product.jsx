@@ -3,19 +3,23 @@ export default function Product(props) {
     const { url, title, description, price, discountedPrice, colorChart } = props
 
     return (
-        <div className="flex flex-col items-center gap-5 w-60">
-            <img src={url} alt={title}/>
+        <div className="flex flex-col items-center gap-5 w-60 h-140 p-5 hover:border hover:border-primary hover:rounded-2xl">
+            <img src={url} alt={title} />
             <h5> {title} </h5>
             <p className="link-text"> {description} </p>
             <div className="flex gap-2">
                 <h5 className="text-muted"> ${price} </h5>
                 <h5 className="text-seconday1"> ${discountedPrice} </h5>
             </div>
-            <div className="flex gap-2">
-                {colorChart.map((color)=>
-                    <span className={`p-2 border rounded-full`} style={{backgroundColor: color, borderColor: color}} key={color}></span>
-                )}
-            </div>
+
+            {colorChart ?
+                <div className="flex gap-2">
+                    {colorChart.map((color) =>
+                        <span className={`p-2 border rounded-full`} style={{ backgroundColor: color, borderColor: color }} key={color}></span>
+                    )}
+                </div>
+                : ""}
+
         </div>
     )
 }

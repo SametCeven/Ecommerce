@@ -10,7 +10,7 @@ export default function ProductDetails(props) {
                 <span> Description </span>
                 <span> Additional Information </span>
                 <span> Reviews
-                    <span className="text-success"> ({selectedProduct.reviewNumber}) </span>
+                    <span className="text-success"> ({selectedProduct.sell_count}) </span>
                 </span>
             </div>
 

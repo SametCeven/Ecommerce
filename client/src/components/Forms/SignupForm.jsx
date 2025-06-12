@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
-import axiosInstance from "../services/api"
-import Spinner from "./Spinner"
+import axiosInstance from "../../services/api"
+import Spinner from "../Spinner"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
-import FormInput from "./FromComponents/FormInput"
-import FormSelectInput from "./FromComponents/FormSelectInput"
+import FormInput from "../FromComponents/FormInput"
+import FormSelectInput from "../FromComponents/FormSelectInput"
 
 const initialFormData = {
     name: "",
@@ -88,7 +88,7 @@ const validationRules = {
 }
 
 import { useSelector, useDispatch } from "react-redux"
-import { fetchRoles } from "../store/actions/globalActions"
+import { fetchRoles } from "../../store/actions/globalActions"
 
 
 export default function SignupForm() {
@@ -97,7 +97,9 @@ export default function SignupForm() {
     const defaultRoleId = useSelector(store => store.global.defaultRoleId)
 
     useEffect(() => {
-        dispatch(fetchRoles())
+        if (roles.length<1) {
+            dispatch(fetchRoles())
+        }
     }, [])
 
     const history = useHistory()
@@ -115,15 +117,15 @@ export default function SignupForm() {
         mode: "all"
     })
 
-    useEffect(()=>{
-        if(defaultRoleId){
+    useEffect(() => {
+        if (defaultRoleId) {
             reset({
                 ...initialFormData,
                 role_id: defaultRoleId.toString(),
             })
         }
 
-    },[defaultRoleId, roles])
+    }, [defaultRoleId, roles])
 
     async function formSubmit(formData) {
         const { passwordValidation, ...cleanFormData } = formData
@@ -144,9 +146,6 @@ export default function SignupForm() {
 
     const roleId = watch("role_id")
     const password = watch("password")
-
-    const form = watch()
-    console.log(form)
 
     return (
         <form className="flex flex-col gap-10" onSubmit={handleSubmit(formSubmit)}>
@@ -292,7 +291,7 @@ export default function SignupForm() {
             }
 
             {errorSubmit &&
-                <p> Error with signup try again.. </p>
+                <p className="input-error"> Error with signup try again.. </p>
             }
 
         </form>
