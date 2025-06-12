@@ -1,4 +1,5 @@
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
+import 'react-toastify/dist/ReactToastify.css';
 import PageContent from "./layout/PageContent";
 import HomePage from "./pages/HomePage";
 import ShopPage from "./pages/ShopPage";
@@ -15,7 +16,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
 import CreateOrderPage from "./pages/CreateOrderPage";
 import ProtectedRoute from "./components/ProtectedRoute";
-import 'react-toastify/dist/ReactToastify.css';
+import PreviousOrders from "./pages/PreviousOrders";
 
 export default function App() {
 
@@ -44,6 +45,7 @@ export default function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/shoppingCart" component={ShoppingCartPage} />
         <ProtectedRoute path="/createOrder" component={CreateOrderPage} />
+        <ProtectedRoute path="/previousOrders" component={PreviousOrders} />
       </Switch>
     </PageContent>
   )
