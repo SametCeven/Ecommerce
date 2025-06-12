@@ -1,33 +1,58 @@
+import { useEffect, useState } from "react";
+import EditorsPick from "../components/EditorsPick";
 import BestsellerProducts from "../components/BestsellerProducts";
-import Blogs from "../components/Blogs";
 import Carousel from "../components/Carousel";
 import Container from "../components/Container";
-import EditorsPick from "../components/EditorsPick";
+import Blogs from "../components/Blogs";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductsWithSortAndFilter } from "../store/actions/productActions";
 
-const imagesCarousel1 = [
-    "https://images.placeholders.dev/400x750",
-    "https://images.placeholders.dev/400x750",
-    "https://images.placeholders.dev/400x750",
-];
-const imagesCarousel2 = [
-    "https://images.placeholders.dev/400x1200",
-    "https://images.placeholders.dev/400x1200",
-    "https://images.placeholders.dev/400x1200",
-];
+
 const buttonCarousel1 = "SHOP NOW"
-const buttonCarousel2 = "ADD TO CART"
 const buttonAlignmentCarousel1 = "bottom"
-const buttonAlignmentCarousel2 = "mid"
 
-export default function HomePage(){
+export default function HomePage() {
+
+    const dispatch = useDispatch()
+    const [productImages, setProductImages] = useState([])
+    const [productData, setProductData] = useState([])
+    const { productList } = useSelector((store) => store.product)
 
 
-    return(
+    useEffect(() => {
+        dispatch(fetchProductsWithSortAndFilter("", "", "", 5, ""))
+    }, [dispatch])
+
+    useEffect(() => {
+        const images = []
+        const data = []
+        productList.map((product) => {
+            product.images.map((img)=>{
+                images.push(img.url)
+            })
+            data.push({
+                "id": product.id,
+                "name": product.name
+            })
+        })
+        setProductData(data)
+        setProductImages(images)
+    }, [productList])
+
+    
+
+    return (
         <div className="flex flex-col items-center justify-center gap-40">
-            <Carousel images={imagesCarousel1} button={buttonCarousel1} buttonAlignment={buttonAlignmentCarousel1}></Carousel>
+            <Carousel
+                images={productImages}
+                button={buttonCarousel1}
+                buttonAlignment={buttonAlignmentCarousel1}
+                handleButton={"ProductDetailPage"}
+                data={productData}
+                >
+            </Carousel>
             <EditorsPick></EditorsPick>
             <BestsellerProducts></BestsellerProducts>
-            <Carousel images={imagesCarousel2} button={buttonCarousel2} buttonAlignment={buttonAlignmentCarousel2}></Carousel>
             <Container></Container>
             <Blogs></Blogs>
         </div>

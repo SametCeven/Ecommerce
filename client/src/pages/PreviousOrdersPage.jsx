@@ -38,7 +38,6 @@ export default function PreviousOrdersPage() {
     }, [])
 
 
-    console.log(previousOrders)
 
 
 
@@ -46,7 +45,7 @@ export default function PreviousOrdersPage() {
         <div className="flex flex-col gap-5 items-center">
             <h2 className="text-text"> Previous Orders </h2>
 
-            {previousOrders.length === 0 ?
+            {previousOrdersLoading ?
                 <div>
                     <span> Loading ... </span>
                     <Spinner></Spinner>

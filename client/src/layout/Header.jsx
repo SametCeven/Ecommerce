@@ -128,16 +128,20 @@ export default function Header() {
 
                 </div>
 
-                <Menu className='xl1440:hidden' size={`${showNavbarXl ? 16 : 24}`} />
+
 
                 <div className='flex items-center gap-1'>
-                    <Heart className='hidden xl1440:block' size={`${showNavbarXl ? 16 : 24}`}></Heart>
-                    {showNavbarXl ? <span className='text-[12px]'> {favCount} </span> : ""}
+                    <Heart className='xl1440:block' size={`${showNavbarXl ? 16 : 24}`}></Heart>
+                    {showNavbarXl && <span className='text-[12px]'> {favCount} </span>}
                 </div>
 
-                <Link to="/previousOrders"> 
-                    <Folders size={`${showNavbarXl ? 16 : 24}`}></Folders>
-                </Link>
+                <div>
+                    <Link to="/previousOrders">
+                        <Folders size={`${showNavbarXl ? 16 : 24}`}></Folders>
+                    </Link>
+                </div>
+
+
 
 
 
