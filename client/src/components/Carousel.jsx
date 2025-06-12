@@ -28,7 +28,7 @@ export default function Carousel(props) {
             <div className="relative max-h-[750px]">
 
                 <div
-                    className="flex transition-transform duration-500 max-h-[750px]"
+                    className="flex transition-transform duration-500 h-[750px]"
                     style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
                     {images.map((img, index) => (
@@ -36,7 +36,7 @@ export default function Carousel(props) {
                             key={index}
                             src={img}
                             alt={`Slide ${index}`}
-                            className="w-full object-cover object-center flex-shrink-0"
+                            className="w-full h-full object-contain object-center flex-shrink-0"
                         />
                     ))}
                 </div>
