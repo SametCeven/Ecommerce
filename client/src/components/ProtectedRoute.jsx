@@ -6,8 +6,6 @@ export default function ProtectedRoute({ component: Component, ...rest }) {
 
     const { user, loginLoading } = useSelector((store) => store.client)
 
-    console.log(user)
-    console.log(user && Object.keys(user).length !== 0)
 
     if(loginLoading){
         return(
