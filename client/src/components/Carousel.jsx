@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 export default function Carousel(props) {
 
-    const { images, button, buttonAlignment } = props
+    const { images, button, buttonAlignment, handleButton, data } = props
+
+    const history = useHistory()
 
     const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -14,6 +17,10 @@ export default function Carousel(props) {
 
     function nextSlide() {
         setCurrentIndex((prev) => prev === images.length - 1 ? 0 : prev + 1)
+    }
+
+    function handleClick(){
+        history.push(`product/${data[currentIndex].name}/${data[currentIndex].id}`)
     }
 
     return (
@@ -50,7 +57,8 @@ export default function Carousel(props) {
 
                 {button ?
                     <button
-                        className={`absolute -translate-y-1/2 -translate-x-1/2 btn-success  ${buttonAlignment === "mid" ? "top-1/2 left-1/2" : ""} ${buttonAlignment === "bottom" ? "top-3/4 left-1/2" : ""}`}>
+                        className={`absolute -translate-y-1/2 -translate-x-1/2 btn-success  ${buttonAlignment === "mid" ? "top-1/2 left-1/2" : ""} ${buttonAlignment === "bottom" ? "top-3/4 left-1/2" : ""}`}
+                        onClick={handleButton && handleClick}>
                         {button}
                     </button>
                     : ""}

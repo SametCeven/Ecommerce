@@ -81,10 +81,12 @@ export function fetchProductsWithSortAndFilter(categoryId,sortingParam, filterTe
 
             dispatch({type: productActions.setProductList, payload: res.data.products})
             dispatch({type: productActions.setTotal, payload: res.data.total})
+            return res.data
         }
         catch(err){
             console.error("Failed to fetch products",err)
             dispatch({type: productActions.fetchProductsFailed, payload: err.message})
+            return err
         }
     }
 }
