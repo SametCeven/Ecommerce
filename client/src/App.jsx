@@ -16,7 +16,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 import ShoppingCartPage from "./pages/ShoppingCartPage";
 import CreateOrderPage from "./pages/CreateOrderPage";
 import ProtectedRoute from "./components/ProtectedRoute";
-import PreviousOrders from "./pages/PreviousOrders";
+import PreviousOrdersPage from "./pages/PreviousOrdersPage";
 
 export default function App() {
 
@@ -45,7 +45,7 @@ export default function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/shoppingCart" component={ShoppingCartPage} />
         <ProtectedRoute path="/createOrder" component={CreateOrderPage} />
-        <ProtectedRoute path="/previousOrders" component={PreviousOrders} />
+        <ProtectedRoute path="/previousOrders" component={PreviousOrdersPage} />
       </Switch>
     </PageContent>
   )

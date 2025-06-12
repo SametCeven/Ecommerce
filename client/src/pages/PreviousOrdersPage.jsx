@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react"
 import axiosInstance from "../services/api"
 import { useSelector } from "react-redux"
-import AccordionItem from "../components/AccordionItem"
 import Spinner from "../components/Spinner"
 import Table from "../components/Table"
 
-export default function PreviousOrders() {
+export default function PreviousOrdersPage() {
 
     const { user } = useSelector(store => store.client)
     const [previousOrders, setPreviousOrders] = useState([])
